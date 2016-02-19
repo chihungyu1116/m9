@@ -1,0 +1,25 @@
+// import Immutable from 'immutable';
+
+// const defaultState = new Immutable.List();
+const defaultState = {
+  todos: []
+};
+
+export default function todoReducer(state = defaultState, action) {
+  switch(action.type) {
+    case 'GET_TODOS':
+      return Object.assign({}, state, {
+        todos: action.res.data
+      })
+      // return state.updateIn('todos').concat(action.res.data)
+      // return state.concat(action.res.data);
+    case 'CREATE_TODO':
+      return state.concat(action.res.data.text);
+    case 'EDIT_TODO':
+      return state.set(action.id, action.text);
+    case 'DELETE_TODO':
+      return state.delete(action.id);
+    default:
+      return state;
+  }
+}
