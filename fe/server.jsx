@@ -1,4 +1,6 @@
 import express from 'express';
+import cookieParser from 'cookie-parser';
+import favicon from 'serve-favicon';
 import React from 'react';
 import { renderToString } from 'react-dom/server'
 import { RouterContext, match } from 'react-router';
@@ -19,6 +21,31 @@ if (process.env.NODE_ENV !== 'production') {
   require('./webpack.dev.config').default(app);
 }
 
+const renderPage = (res, initialState) => {
+  res.status(200).send(`
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <title>Modulator</title>
+        <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="/assets/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.css">
+        <script type="application/javascript">
+          window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
+        </script>
+      </head>
+      <body>
+        <div id="react-view"></div>
+        <script type="application/javascript" src="/bundle.js"></script>
+      </body>
+    </html>
+  `);
+}
+
+app.use(cookieParser());
+app.use(favicon(__dirname + '/assets/favicon.ico'));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 app.use( (req, res, next) => {
@@ -26,53 +53,18 @@ app.use( (req, res, next) => {
   const reducer  = combineReducers(reducers);
   const store    = applyMiddleware(promiseMiddleware)(createStore)(reducer);
 
+  // Not doing serverside rendering to reduce complexity for now
   match({ routes, location }, (err, redirectLocation, renderProps) => {
     if(err) {
       console.error(err);
       return res.status(500).end('Internal server error');
-    }
-
-    if(!renderProps) {
+    } else if(!renderProps) {
       return res.status(404).end('Not found');
     }
 
-    function renderView() {
-      const InitialView = (
-        <Provider store={store}>
-          <RouterContext {...renderProps} />
-        </Provider>
-      );
+    const initialState = store.getState();
 
-      const componentHTML = renderToString(InitialView);
-
-      const initialState = store.getState();
-
-      const HTML = `
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <title>Modulator</title>
-          <link rel="stylesheet" href="/assets/bootstrap/dist/css/bootstrap.css">
-          <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.css">
-          <script type="application/javascript">
-            window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
-          </script>
-        </head>
-        <body>
-          <div id="react-view">${componentHTML}</div>
-          <script type="application/javascript" src="/bundle.js"></script>
-        </body>
-      </html>
-      `;
-
-      return HTML;
-    }
-
-    fetchComponentData(store.dispatch, renderProps.components, renderProps.params)
-      .then(renderView)
-      .then(html => res.end(html))
-      .catch(err => res.end(err.message));
+    renderPage(res, initialState)
   });
 });
 
