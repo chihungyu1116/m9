@@ -14,10 +14,18 @@ class BaseController < ActionController::API
   protected
 
   def auth
+    authenticate_token || render_unauthorized
+  end
 
-    authenticate_or_request_with_http_token do |token, options|
+  def authenticate_token
+    authenticate_with_http_token do |token, options|
+      puts ('token: ' + token)
       Member.find_by(auth_token: token)
     end
-    render json: {}, status: :unauthorized
+  end
+
+  def render_unauthorized
+    self.headers['WWW-Authenticate'] = 'Token realm="Application"'
+    render json: 'Bad credentials', status: :unauthorized
   end
 end

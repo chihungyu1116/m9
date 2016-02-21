@@ -1,8 +1,8 @@
-import request from 'axios';
+import request from '../lib/request';
 
 const API = {
-  login: 'http://localhost:3000/session/login',
-  logout: 'http://localhost:3000/session/logout'
+  login: '/session/login',
+  logout: '/session/logout'
 };
 
 export const REQUEST_LOGIN_ACT = 'REQUEST_LOGIN_ACT'

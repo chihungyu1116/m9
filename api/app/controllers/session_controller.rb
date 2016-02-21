@@ -4,12 +4,16 @@ class SessionController < BaseController
   end
 
   def login
-    session[:user_id] = 'admin'
-    render json: {}
+    @user = Member.first
+
+    render json: {
+      auth_token: @user.auth_token
+    }
   end
 
   def logout
-    session[:user_id] = nil
-    render json: {}
+    render json: {
+      auth_token: nil
+    }
   end
 end

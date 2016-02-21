@@ -9,7 +9,6 @@ import routes from './shared/routes';
 import { Provider } from 'react-redux';
 import reducers from './shared/reducers';
 import promiseMiddleware from './shared/lib/promiseMiddleware';
-import fetchComponentData from './shared/lib/fetchComponentData';
 import { createStore,
          combineReducers,
          applyMiddleware } from 'redux';
