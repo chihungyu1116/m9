@@ -7,7 +7,7 @@ class SessionController < BaseController
     @user = Member.first
 
     render json: {
-      auth_token: @user.auth_token
+      auth_token: AuthToken.encode(user_id: @user.id)
     }
   end
 

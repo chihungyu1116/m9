@@ -15,7 +15,7 @@ function isClient() {
 
 function requireLogin(nextState, replace) {
   if(isClient() && session.loggedIn()) {
-    replace({ nextPathname: nextState.location.pathname }, '/team') ;
+    replace({ nextPathname: nextState.location.pathname }, '/app') ;
   }
 }
 
@@ -23,7 +23,7 @@ function requireAuth(nextState, replace, cbFunc) {
   if (isClient()) {
     session.auth()
       .catch((res) => {
-        if(res.status === 401){
+        if(res.status === 401 || res.status === 500){
           session.clearAuthToken();
           replace({ nextPathname: nextState.location.pathname }, '/login') 
         }
@@ -31,7 +31,6 @@ function requireAuth(nextState, replace, cbFunc) {
         return res;
       })
       .then((res) => {
-        console.log('res', res)
         cbFunc()
       });
   } else {
@@ -42,7 +41,7 @@ function requireAuth(nextState, replace, cbFunc) {
 export default (
   <Route component={Layout} path='/'>
     <Route name='login' component={Login} path='login' onEnter={requireLogin} />
-    <Route name='home' component={App} path='/' onEnter={requireAuth}>
+    <Route name='home' component={App} path='/app' onEnter={requireAuth}>
       <Route name='team' component={Common} path='/team'>
         <IndexRoute name='team' component={Team} />
         <Route name='new' component={TeamEdit} path='/team/new' />

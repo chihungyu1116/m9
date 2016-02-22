@@ -10,6 +10,8 @@ gem "mysql2", '~> 0.3.18'
 
 gem 'rack-cors', :require => 'rack/cors'
 
+gem 'jwt'
+
 # Use Puma as the app server
 gem 'puma'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

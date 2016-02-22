@@ -22,6 +22,10 @@ class LoginPage extends Component {
   static propTypes = {
   };
 
+  static contextTypes = {
+    router: React.PropTypes.object.isRequired 
+  }
+
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,8 +35,10 @@ class LoginPage extends Component {
     this.props.requestLoginAct()
   }
 
-  componentWillMount() {
-        
+  componentWillUpdate(nextProps, nextState) {
+    if(nextProps.authToken) {
+      this.context.router.replace('/app');
+    }
   }
 
   render() {
@@ -55,7 +61,7 @@ function mapStateToProps(state) {
   }
 
   return {
-
+    authToken
   }
 }
 

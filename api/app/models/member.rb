@@ -3,7 +3,7 @@ class Member < ApplicationRecord
 
   DEFAULT_CREATED_BY = 'system'
 
-  before_create :set_auth_token, :set_created_by
+  before_create :set_created_by
 
   has_many :member_teams
   has_many :teams, through: :member_teams
@@ -21,14 +21,5 @@ class Member < ApplicationRecord
   def set_created_by
     return if created_by.present?
     self.created_by = DEFAULT_CREATED_BY
-  end
-
-  def set_auth_token
-    return if auth_token.present?
-    self.auth_token = generate_auth_token
-  end
-
-  def generate_auth_token
-    SecureRandom.uuid.gsub(/\-/,'')
   end
 end
