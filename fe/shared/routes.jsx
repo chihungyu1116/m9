@@ -42,8 +42,8 @@ function requireAuth(nextState, replace, cbFunc) {
 export default (
   <Route component={Layout} path='/'>
     <Route name='login' component={Login} path='login' onEnter={requireLogin} />
-    <Route name='home' component={App} path='/dashboard' onEnter={requireAuth}>
-      <IndexRoute name='team' component={Dashboard} />
+    <Route name='dashboard' component={App} path='/dashboard' onEnter={requireAuth}>
+      <IndexRoute name='dashboard' component={Dashboard} />
       <Route name='team' component={Common} path='/team'>
         <IndexRoute name='team' component={Team} />
         <Route name='new' component={TeamEdit} path='/team/new' />

@@ -17,8 +17,6 @@ class TeamPage extends Component {
     
   };
 
-  static needs = [];
-
   constructor(props) {
     super(props);
   }
