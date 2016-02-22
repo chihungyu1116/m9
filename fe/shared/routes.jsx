@@ -5,6 +5,7 @@ import App from './pages/App';
 import Login from './pages/Login';
 import Common from './pages/Common';
 import Team from './pages/Team';
+import Dashboard from './pages/Dashboard';
 import TeamEdit from './pages/TeamEdit';
 import session from './lib/session';
 import request from './lib/request';
@@ -15,7 +16,7 @@ function isClient() {
 
 function requireLogin(nextState, replace) {
   if(isClient() && session.loggedIn()) {
-    replace({ nextPathname: nextState.location.pathname }, '/app') ;
+    replace({ nextPathname: nextState.location.pathname }, '/dashboard') ;
   }
 }
 
@@ -41,7 +42,8 @@ function requireAuth(nextState, replace, cbFunc) {
 export default (
   <Route component={Layout} path='/'>
     <Route name='login' component={Login} path='login' onEnter={requireLogin} />
-    <Route name='home' component={App} path='/app' onEnter={requireAuth}>
+    <Route name='home' component={App} path='/dashboard' onEnter={requireAuth}>
+      <IndexRoute name='team' component={Dashboard} />
       <Route name='team' component={Common} path='/team'>
         <IndexRoute name='team' component={Team} />
         <Route name='new' component={TeamEdit} path='/team/new' />

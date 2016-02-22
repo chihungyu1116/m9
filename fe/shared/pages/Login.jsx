@@ -37,7 +37,7 @@ class LoginPage extends Component {
 
   componentWillUpdate(nextProps, nextState) {
     if(nextProps.authToken) {
-      this.context.router.replace('/app');
+      this.context.router.replace('/dashboard');
     }
   }
 

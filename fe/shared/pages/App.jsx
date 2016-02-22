@@ -18,14 +18,12 @@ export default class AppView extends React.Component {
   static propTypes = {
     children: PropTypes.object
   };
-
-  static needs = [];
   
   render() {
     const { routes, params } = this.props
 
     return (
-      <div id="app-view">
+      <div id="app-page">
         <Header />
         <Breadcrumb routes={routes} params={params} />
         <Controls />
