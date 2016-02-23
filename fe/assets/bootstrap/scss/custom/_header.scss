@@ -31,7 +31,7 @@ $font-color: #373a3c;
 
 // last child is the first child since style as float right
 .nav-profile.last { 
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 .nav-profile {
@@ -39,23 +39,29 @@ $font-color: #373a3c;
   box-sizing: border-box;
   float: right;
   height: $navbar-height;
-  padding: 6px;
   border-left: 1px solid #e1e1e1;
   font-size: 14px;
   line-height: 20px;
   cursor: pointer;
 
-  &.primary {
+  .fa {
+    padding: 10px 5px;
+    font-size: 18px;
+  }
+
+  &.profile {
+    padding: 5px;
     background: #62a8d1;
   }
 
-  &.secondary {
+  &.menu {
+    padding: 5px 10px;
     background: #2e8965;
   }
 
-  .icon {
-    padding: 10px 10px 0 5px;
-    font-size: 18px;
+  &.info {
+    padding: 5px 10px;
+    background: #892e65;
   }
 
   &:hover {
@@ -73,7 +79,7 @@ $font-color: #373a3c;
   position: absolute;
   z-index: 10;
   top: $navbar-height;
-  right: -5px;
+  right: 0;
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.15);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
@@ -95,13 +101,13 @@ $font-color: #373a3c;
   }
 
   & > li {
-    padding-left: 10px;
-
     &:hover {
       background-color:#fee074;
     }
 
     & > a {
+      display: block;
+      padding-left: 10px;
       color: $font-color;
       line-height: 25px;
 
