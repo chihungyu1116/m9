@@ -16,6 +16,14 @@ class Member < ApplicationRecord
     self.roles << role if self.roles.where(id: role.id).empty?
   end
 
+  def public_info
+    {
+      id: id,
+      name: name,
+      auth_token: AuthToken.encode(user_id: id)
+    }
+  end
+
   private
 
   def set_created_by

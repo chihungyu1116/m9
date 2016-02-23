@@ -17,7 +17,7 @@ class BaseController < ActionController::API
     raise Exceptions::NotAuthenticatedError
   end
 
-  private
+  protected
 
   # Authentication Related Helper Methods
   # ------------------------------------------------------------

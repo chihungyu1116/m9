@@ -12,10 +12,6 @@ class TeamEditPage extends Component {
     dispatch: PropTypes.func.isRequired
   };
 
-  static needs = [
-    
-  ];
-
   constructor(props) {
     super(props);
   }

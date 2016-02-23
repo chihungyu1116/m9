@@ -27,8 +27,8 @@ const renderPage = (res, initialState) => {
       <head>
         <meta charset="utf-8">
         <title>Modulator</title>
-        <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
+        <link rel="icon" href="/assets/favicon.png" type="image/x-icon">
         <link rel="stylesheet" href="/assets/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.css">
         <script type="application/javascript">
@@ -44,7 +44,7 @@ const renderPage = (res, initialState) => {
 }
 
 app.use(cookieParser());
-app.use(favicon(__dirname + '/assets/favicon.ico'));
+app.use(favicon(__dirname + '/assets/favicon.png'));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 app.use( (req, res, next) => {

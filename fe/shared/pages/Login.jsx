@@ -4,7 +4,6 @@ import { requestLoginAct } from '../actions/Session';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import LoginForm from '../forms/LoginForm';
-import session from '../lib/session';
 
 const STYLES = {
   loginPage: {
@@ -35,12 +34,6 @@ class LoginPage extends Component {
     this.props.requestLoginAct()
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    if(nextProps.authToken) {
-      this.context.router.replace('/dashboard');
-    }
-  }
-
   render() {
     return (
       <div id="login-page" style={STYLES.loginPage}>
@@ -54,15 +47,7 @@ class LoginPage extends Component {
 }
 
 function mapStateToProps(state) {
-  const { authToken } = state.sessionReducer;
-
-  if(authToken) {
-    session.setAuthToken(authToken);
-  }
-
-  return {
-    authToken
-  }
+  return {};
 }
 
 export default connect(mapStateToProps, {

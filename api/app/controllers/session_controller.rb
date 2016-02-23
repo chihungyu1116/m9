@@ -3,12 +3,16 @@ class SessionController < BaseController
     render json: {}
   end
 
-  def login
-    @user = Member.first
+  def user
+    @member = Member.find(decoded_auth_token[:user_id])
 
-    render json: {
-      auth_token: AuthToken.encode(user_id: @user.id)
-    }
+    render json: @member.public_info
+  end
+
+  def login
+    @member = Member.first
+
+    render json: @member.public_info
   end
 
   def logout

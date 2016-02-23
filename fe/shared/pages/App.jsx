@@ -1,7 +1,9 @@
 import React, { Component , PropTypes } from 'react';
+import { connect } from 'react-redux';
 import Header from '../containers/Header';
 import Breadcrumb from '../containers/Breadcrumb';
 import Controls from '../containers/Controls';
+import session from '../lib/session';
 
 const STYLES = {
   container: {
@@ -10,7 +12,7 @@ const STYLES = {
   }
 }
 
-export default class AppView extends React.Component {
+class AppPage extends React.Component {
   static contextTypes = { // https://facebook.github.io/react/docs/context.html
     router: React.PropTypes.object.isRequired 
   }
@@ -18,6 +20,13 @@ export default class AppView extends React.Component {
   static propTypes = {
     children: PropTypes.object
   };
+
+  componentWillUpdate(nextProps, nextState) {
+    if(!nextProps.authToken) {
+      session.clearAuthToken();
+      this.context.router.replace('/login');
+    }
+  }
   
   render() {
     const { routes, params } = this.props
@@ -34,3 +43,13 @@ export default class AppView extends React.Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  const { authToken } = state.sessionReducer;
+
+  return {
+    authToken
+  }
+}
+
+export default connect(mapStateToProps)(AppPage)

@@ -13,10 +13,12 @@ class Breadcrumb extends React.Component {
     let routes = []
 
     this.props.routes.slice(1).forEach((route) => {
-      if(route.path) {
+      // Currently not including the name of those IndexRoutes
+      // As they are wrapped in the component and it's a bit complicated to extract it quickly
+      if(route.breadcrumb) {
         routes.push({
           path: route.path,
-          name: route.name
+          name: route.breadcrumb
         });  
       }
     });

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import Layout from './pages/Layout';
+import Public from './pages/Public';
 import App from './pages/App';
 import Login from './pages/Login';
 import Common from './pages/Common';
@@ -14,13 +14,13 @@ function isClient() {
    return typeof window != 'undefined' && window.document;
 }
 
-function requireLogin(nextState, replace) {
+function checkRedirect(nextState, replace) {
   if(isClient() && session.loggedIn()) {
     replace({ nextPathname: nextState.location.pathname }, '/dashboard') ;
   }
 }
 
-function requireAuth(nextState, replace, cbFunc) {
+function checkAuth(nextState, replace, cbFunc) {
   if (isClient()) {
     session.auth()
       .catch((res) => {
@@ -40,14 +40,15 @@ function requireAuth(nextState, replace, cbFunc) {
 }
 
 export default (
-  <Route component={Layout} path='/'>
-    <Route name='login' component={Login} path='login' onEnter={requireLogin} />
-    <Route name='dashboard' component={App} path='/dashboard' onEnter={requireAuth}>
-      <IndexRoute name='dashboard' component={Dashboard} />
-      <Route name='team' component={Common} path='/team'>
-        <IndexRoute name='team' component={Team} />
-        <Route name='new' component={TeamEdit} path='/team/new' />
-        <Route name='edit' component={TeamEdit} path='/team/edit/:id' />
+  <Route component={Public} path='/'>
+    <IndexRoute component={Login} onEnter={checkRedirect} />
+    <Route component={Login} path='login' onEnter={checkRedirect} />
+    <Route breadcrumb='dashboard' component={App} path='/dashboard'>
+      <IndexRoute component={Dashboard} onEnter={checkAuth} />
+      <Route breadcrumb='team' component={Common} path='/team'>
+        <IndexRoute component={Team} onEnter={checkAuth} onEnter={checkAuth} />
+        <Route breadcrumb='new' component={TeamEdit} path='/team/new' onEnter={checkAuth} />
+        <Route breadcrumb='edit' component={TeamEdit} path='/team/edit/:id' onEnter={checkAuth} />
       </Route>
     </Route>
   </Route>

@@ -1,0 +1,115 @@
+$navbar-height: 50px;
+$font-color: #373a3c;
+
+.nav-brand {
+  a {
+    float: left;
+    position: relative;
+    display: block;
+    color: #fff;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: $navbar-height;
+    padding: 0 10px;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  a:before {
+    content: '';
+    background-image: url(/assets/images/walmart_icon_36x36.png);
+    position: absolute;
+    top: 7px;
+    right: -33px;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+// last child is the first child since style as float right
+.nav-profile.last { 
+  margin-right: 10px;
+}
+
+.nav-profile {
+  position: relative;
+  box-sizing: border-box;
+  float: right;
+  height: $navbar-height;
+  padding: 6px;
+  border-left: 1px solid #e1e1e1;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+
+  &.primary {
+    background: #62a8d1;
+  }
+
+  &.secondary {
+    background: #2e8965;
+  }
+
+  .icon {
+    padding: 10px 10px 0 5px;
+    font-size: 18px;
+  }
+
+  &:hover {
+    .nav-profile-content {
+      display: block;
+    }
+  }
+}
+
+.nav-profile-content {
+  display: none;
+  list-style: none;
+  width: 140px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 10;
+  top: $navbar-height;
+  right: -5px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  color: $font-color;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: 10px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #fff;
+    
+  }
+
+  & > hr {
+    margin: 5px 0;
+  }
+
+  & > li {
+    padding-left: 10px;
+
+    &:hover {
+      background-color:#fee074;
+    }
+
+    & > a {
+      color: $font-color;
+      line-height: 25px;
+
+      &:hover {
+        color: $font-color;
+        text-decoration: none;
+      }
+    }
+  }  
+}
+
