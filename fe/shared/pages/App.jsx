@@ -2,8 +2,8 @@ import React, { Component , PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Header from '../containers/Header';
 import Breadcrumb from '../containers/Breadcrumb';
-import Controls from '../containers/Controls';
 import session from '../lib/session';
+import { afterRedirectAct } from '../actions/Route';
 
 const STYLES = {
   container: {
@@ -22,10 +22,14 @@ class AppPage extends React.Component {
   };
 
   componentWillUpdate(nextProps, nextState) {
-    if(!nextProps.authToken) {
+    if(nextProps.authToken == null) {
       session.clearAuthToken();
       this.context.router.replace('/login');
+    } else if(nextProps.redirect != null) {
+      this.context.router.replace(nextProps.redirect);
+      this.props.afterRedirectAct();
     }
+
   }
   
   render() {
@@ -35,7 +39,6 @@ class AppPage extends React.Component {
       <div id="app-page">
         <Header />
         <Breadcrumb routes={routes} params={params} />
-        <Controls />
         <div className="container-fluid" style={STYLES.container}>
           {this.props.children}
         </div>
@@ -46,10 +49,14 @@ class AppPage extends React.Component {
 
 function mapStateToProps(state) {
   const { authToken } = state.sessionReducer;
+  const { redirect } = state.routeReducer;
 
   return {
-    authToken
+    authToken,
+    redirect
   }
 }
 
-export default connect(mapStateToProps)(AppPage)
+export default connect(mapStateToProps, {
+  afterRedirectAct
+})(AppPage)

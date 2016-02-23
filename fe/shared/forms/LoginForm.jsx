@@ -3,6 +3,7 @@ import { reduxForm } from 'redux-form';
 
 export const form = 'login';
 export const fields = ['username', 'password', 'tenant'];
+const defaultTenant = 'walmart';
 
 const STYLES = {
   tenant: {
@@ -46,7 +47,16 @@ class LoginForm extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    initialValues: {
+      tenant: defaultTenant
+    }
+  };
+}
+
 export default reduxForm({
   form,
   fields
-})(LoginForm);
+},
+mapStateToProps)(LoginForm);

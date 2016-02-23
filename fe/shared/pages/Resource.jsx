@@ -6,7 +6,7 @@ import List from '../components/List';
 
 const HEADS = ['id', 'name', 'leads', 'allowed_roles'] 
 
-class TeamPage extends Component {
+class ResourcePage extends Component {
   static propTypes = {
     
   };
@@ -31,7 +31,7 @@ class TeamPage extends Component {
       <div id='team-page'>
         <ul className="nav nav-pills">
           <li className="nav-item">
-            <Link className='btn btn-primary' to='/team/new'>Create</Link>
+            <Link className='btn btn-primary' to='/resource/new'>Create</Link>
           </li>
         </ul>
         { this.renderList() }
@@ -48,4 +48,4 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
 
-})(TeamPage)
+})(ResourcePage)

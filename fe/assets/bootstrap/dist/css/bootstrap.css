@@ -6320,4 +6320,8 @@ a.bg-danger:focus, a.bg-danger:hover {
   color: #373a3c;
   text-decoration: none;
 }
+
+.list-component {
+  padding-top: 20px;
+}
 /*# sourceMappingURL=bootstrap.css.map */

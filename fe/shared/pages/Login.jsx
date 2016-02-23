@@ -30,7 +30,8 @@ class LoginPage extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit() {
+  handleSubmit(a,b,c) {
+    console.log('submit: ',a,b,c)
     this.props.requestLoginAct()
   }
 

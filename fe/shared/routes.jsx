@@ -5,8 +5,10 @@ import App from './pages/App';
 import Login from './pages/Login';
 import Common from './pages/Common';
 import Team from './pages/Team';
-import Dashboard from './pages/Dashboard';
 import TeamEdit from './pages/TeamEdit';
+import Resource from './pages/Resource';
+import ResourceEdit from './pages/ResourceEdit';
+import Dashboard from './pages/Dashboard';
 import session from './lib/session';
 import request from './lib/request';
 
@@ -14,7 +16,7 @@ function isClient() {
    return typeof window != 'undefined' && window.document;
 }
 
-function checkRedirect(nextState, replace) {
+function checkRoute(nextState, replace) {
   if(isClient() && session.loggedIn()) {
     replace({ nextPathname: nextState.location.pathname }, '/dashboard') ;
   }
@@ -41,14 +43,19 @@ function checkAuth(nextState, replace, cbFunc) {
 
 export default (
   <Route component={Public} path='/'>
-    <IndexRoute component={Login} onEnter={checkRedirect} />
-    <Route component={Login} path='login' onEnter={checkRedirect} />
+    <IndexRoute component={Login} onEnter={checkRoute} />
+    <Route component={Login} path='login' onEnter={checkRoute} />
     <Route breadcrumb='dashboard' component={App} path='/dashboard'>
       <IndexRoute component={Dashboard} onEnter={checkAuth} />
       <Route breadcrumb='team' component={Common} path='/team'>
         <IndexRoute component={Team} onEnter={checkAuth} onEnter={checkAuth} />
         <Route breadcrumb='new' component={TeamEdit} path='/team/new' onEnter={checkAuth} />
         <Route breadcrumb='edit' component={TeamEdit} path='/team/edit/:id' onEnter={checkAuth} />
+      </Route>
+      <Route breadcrumb='resource' component={Common} path='/resource'>
+        <IndexRoute component={Resource} onEnter={checkAuth} onEnter={checkAuth} />
+        <Route breadcrumb='new' component={ResourceEdit} path='/resource/new' onEnter={checkAuth} />
+        <Route breadcrumb='edit' component={ResourceEdit} path='/resource/edit/:id' onEnter={checkAuth} />
       </Route>
     </Route>
   </Route>

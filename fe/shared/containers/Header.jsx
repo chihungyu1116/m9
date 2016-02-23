@@ -17,7 +17,6 @@ class Header extends React.Component {
   }
 
   handleLogout(e) {
-    console.log('click foo')
     this.props.requestLogoutAct();
   }
 
@@ -45,6 +44,7 @@ class Header extends React.Component {
         <div className='nav-profile menu clearfix'>
           <div className='pull-left'><i className="fa fa-bars"></i></div>
           <ul className='nav-profile-content'>
+            <li><Link to='/resource'>Resource</Link></li>
             <li><Link to='/dashboard'>Dashboard</Link></li>
             <li><Link to='/team'>Team</Link></li>
           </ul>

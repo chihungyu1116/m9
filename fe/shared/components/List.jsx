@@ -21,12 +21,14 @@ export default class List extends React.Component {
   render() {
     if(this.props.rows.length === 0) {
       return (
-        <p>No Data Available</p>
+        <div className='list-component'>
+          <p>No Data Available</p>
+        </div>
       )
     }
 
     return (
-      <table className="table table-striped">
+      <table className="list-component table table-striped">
         <thead className="thead-inverse">
           <tr>
             { this.renderHeads() }        

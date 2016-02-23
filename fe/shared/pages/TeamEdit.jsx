@@ -2,9 +2,12 @@ import React, { Component , PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import TeamForm from '../forms/TeamForm';
 
 const STYLES = {
-  
+  form: {
+    width: '400px'
+  }
 }
 
 class TeamEditPage extends Component {
@@ -14,23 +17,36 @@ class TeamEditPage extends Component {
 
   constructor(props) {
     super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  isEdit() {
-    
+  handleSubmit() {
+    console.log('click foo')
   }
 
   render() {
-    const { dispatch } = this.props;
+    const { location } = this.props;
 
-    this.isEdit();
+    const isNew = location.pathname === '/team/new'
 
     return (
       <div id='team-edit-page'>
-       Team Edit
+        <div style={STYLES.form}>
+          <TeamForm onSubmit={this.handleSubmit}/>
+        </div>
       </div>
     );
   }
 }
 
-export default connect(state => ({}))(TeamEditPage)
+function mapStateToProps(state) {
+
+  console.log('team edit', state)
+  return {
+
+  }
+}
+
+export default connect(mapStateToProps, {
+
+})(TeamEditPage)
