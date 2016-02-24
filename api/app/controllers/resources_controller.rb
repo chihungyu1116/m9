@@ -1,4 +1,10 @@
 class ResourcesController < ApplicationController
+  def index
+    @resources = Resource.all
+
+    render json: @resources
+  end
+
   def create
     @resource = Resource.create create_params
 

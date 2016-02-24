@@ -1,31 +1,46 @@
 import React, { Component , PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import List from '../components/List';
+import { requestResourcesAct } from '../actions/Resource';
 
-const HEADS = ['id', 'name', 'leads', 'allowed_roles'] 
+const FIELDS = [{
+  name: 'id', label: 'Id'
+}, {
+  name: 'action', label: 'Action'
+}, {
+  name: 'controller', label: 'Controller'
+}, {
+  name: 'updated_at', label: 'Updated At', type: 'time'
+}, {
+  name: 'created_at', label: 'Created At', type: 'time'
+}];
 
 class ResourcePage extends Component {
   static propTypes = {
     
   };
 
-  constructor(props) {
-    super(props);
+  static contextTypes = { // https://facebook.github.io/react/docs/context.html
+    router: React.PropTypes.object.isRequired 
   }
 
-  renderList() {
-    const rows = [];
-    const heads = HEADS;
+  constructor(props) {
+    super(props);
+    this.handleRowClick = this.handleRowClick.bind(this);
+  }
 
-    return (
-      <List rows={rows} heads={heads} />
-    )
+  componentWillMount() {
+    this.props.requestResourcesAct({});
+  }
+
+  handleRowClick(row) {
+    this.context.router.replace(`/resource/edit/${row.id}`);
   }
 
   render() {
-    const { dispatch } = this.props;
+    const fields = FIELDS;
+    const rows = this.props.resources;
 
     return (
       <div id='resource-page'>
@@ -34,18 +49,23 @@ class ResourcePage extends Component {
             <Link className='btn btn-primary' to='/resource/new'>Create</Link>
           </li>
         </ul>
-        { this.renderList() }
+        <List
+          rows={ rows }
+          fields={ fields } 
+          handleRowClick={this.handleRowClick} />
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return {
+  const { resources = [] } = state.resourceReducer;
 
+  return {
+    resources
   }
 }
 
 export default connect(mapStateToProps, {
-
+  requestResourcesAct
 })(ResourcePage)

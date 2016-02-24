@@ -1,25 +1,25 @@
 import React, { PropTypes } from 'react';
+import moment from 'moment';
 
 export default class List extends React.Component {
   static propTypes = {
-    heads: PropTypes.array.isRequired,
+    fields: PropTypes.array.isRequired,
     rows: PropTypes.array.isRequired
   };
 
-  handleSubmit = () => {
-    
-  };
-
-  renderHeads() {
-
+  constructor(props) {
+    super(props);
   }
 
-  renderRows() {
-    
+  handleRowClick(cols) {
+    this.props.handleRowClick(cols);
   }
+
 
   render() {
-    if(this.props.rows.length === 0) {
+    const { fields = [], rows = [], handleRowClick = () => {} } = this.props;
+
+    if(rows.length === 0) {
       return (
         <div className='list-component'>
           <p>No Data Available</p>
@@ -31,11 +31,33 @@ export default class List extends React.Component {
       <table className="list-component table table-striped">
         <thead className="thead-inverse">
           <tr>
-            { this.renderHeads() }        
+            {
+              fields.map((field, index) => {
+                return <th key={ index }>{ field.label }</th>
+              })
+            }
           </tr>
         </thead>
         <tbody>
-          { this.renderBody() }
+          {
+            rows.map((row, index) => {
+              const cols = fields.map((field, index) => {
+                let val = row[field.name];
+
+                if(field.type === 'time') {
+                  val = moment(val).format('lll');
+                }
+
+                return <td key={ index }>{ val }</td>;
+              });
+
+              return (
+                <tr onClick={ this.handleRowClick.bind(this, row) } key={ index }>
+                  { cols }
+                </tr>
+              )
+            })
+          }
         </tbody>
       </table>
     );
