@@ -20,7 +20,7 @@ class TeamForm extends Component {
       <form onSubmit={handleSubmit}>
         <fieldset className="form-group">
           <label>Team Name</label>
-          <input type="text" className="form-control" id="name" placeholder="Team name" {...name} />
+          <input type="text" className="form-control" id="name" placeholder="Team name" {...name} autoComplete="off"/>
         </fieldset>
         <fieldset className="form-group">
           <label>Allowed Roles</label>
@@ -32,7 +32,7 @@ class TeamForm extends Component {
         </fieldset>
         <fieldset className="form-group">
           <label>Notes</label>
-          <input type="text" className="form-control" id="notes" placeholder="Notes" {...notes} />
+          <textarea className="form-control" id="notes" placeholder="Notes" {...notes} />
         </fieldset>
         <button className="btn btn-primary btn-block" type="submit">Create</button>
       </form>

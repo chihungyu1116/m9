@@ -20,11 +20,11 @@ class ResourceForm extends Component {
       <form onSubmit={handleSubmit}>
         <fieldset className="form-group">
           <label>Controller</label>
-          <input type="text" className="form-control" id="controller" placeholder="Controller" {...controller} />
+          <input type="text" className="form-control" id="controller" placeholder="Controller" {...controller} autoComplete="off"/>
         </fieldset>
         <fieldset className="form-group">
           <label>Action</label>
-          <input type="text" className="form-control" id="action" placeholder="Action" {...action} />
+          <input type="text" className="form-control" id="action" placeholder="Action" {...action} autoComplete="off"/>
         </fieldset>
         <button className="btn btn-primary btn-block" type="submit">Submit</button>
       </form>

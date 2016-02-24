@@ -1,8 +1,5 @@
 import React, { Component , PropTypes } from 'react';
 
-const STYLES = {
-}
-
 export default class DashboardPage extends React.Component {
   static contextTypes = { // https://facebook.github.io/react/docs/context.html
     router: React.PropTypes.object.isRequired 

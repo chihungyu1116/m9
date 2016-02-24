@@ -2,15 +2,9 @@ import React, { Component , PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Header from '../containers/Header';
 import Breadcrumb from '../containers/Breadcrumb';
+import Notification from '../containers/Notification';
 import session from '../lib/session';
 import { afterRedirectAct } from '../actions/Route';
-
-const STYLES = {
-  container: {
-    padding: '15px',
-    background: 'f8f8f9'
-  }
-}
 
 class AppPage extends React.Component {
   static contextTypes = { // https://facebook.github.io/react/docs/context.html
@@ -39,7 +33,8 @@ class AppPage extends React.Component {
       <div id="app-page">
         <Header />
         <Breadcrumb routes={routes} params={params} />
-        <div className="container-fluid" style={STYLES.container}>
+        <Notification />
+        <div className="container-fluid">
           {this.props.children}
         </div>
       </div>

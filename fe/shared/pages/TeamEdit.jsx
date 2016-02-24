@@ -4,12 +4,6 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import TeamForm from '../forms/TeamForm';
 
-const STYLES = {
-  form: {
-    width: '400px'
-  }
-}
-
 class TeamEditPage extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired
@@ -17,7 +11,7 @@ class TeamEditPage extends Component {
 
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit() {
@@ -31,17 +25,13 @@ class TeamEditPage extends Component {
 
     return (
       <div id='team-edit-page'>
-        <div style={STYLES.form}>
-          <TeamForm onSubmit={this.handleSubmit}/>
-        </div>
+        <TeamForm onSubmit={this.handleSubmit}/>
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-
-  console.log('team edit', state)
   return {
 
   }

@@ -6324,4 +6324,40 @@ a.bg-danger:focus, a.bg-danger:hover {
 .list-component {
   padding-top: 20px;
 }
+
+.breadcrumb-container {
+  margin-bottom: 5px;
+}
+
+.notification-container {
+  padding: 15px;
+}
+
+.login-form {
+  margin-bottom: 10px;
+}
+
+#app-page > .container-fluid {
+  padding: 15px;
+  background: f8f8f9;
+}
+
+#login-page {
+  width: 400px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+#login-page > p {
+  padding: 15px 0 0;
+  text-align: center;
+}
+
+#resource-edit-page {
+  width: 400px;
+}
+
+#team-edit-page {
+  width: 400px;
+}
 /*# sourceMappingURL=bootstrap.css.map */

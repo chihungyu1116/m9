@@ -2,12 +2,6 @@ import React, { Component , PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-const STYLES = {
-  breadcrumb: {
-    marginBottom: '5px'
-  }
-}
-
 class Breadcrumb extends React.Component {
   render() {
     let routes = []
@@ -24,7 +18,7 @@ class Breadcrumb extends React.Component {
     });
 
     return (
-      <ol className="breadcrumb" style={STYLES.breadcrumb}>
+      <ol className="breadcrumb-container breadcrumb">
         {
           routes.map((route, index) => {
             return (index === routes.length - 1) ? 

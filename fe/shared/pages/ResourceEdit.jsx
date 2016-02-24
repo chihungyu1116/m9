@@ -7,12 +7,6 @@ import {
   updateResourceAct
 } from '../actions/Resource';
 
-const STYLES = {
-  form: {
-    width: '400px'
-  }
-}
-
 class ResourceEditPage extends Component {
   static propTypes = {};
 
@@ -41,17 +35,13 @@ class ResourceEditPage extends Component {
 
     return (
       <div id='resource-edit-page'>
-        <div style={STYLES.form}>
-          <ResourceForm onSubmit={this.handleSubmit}/>
-        </div>
+        <ResourceForm onSubmit={this.handleSubmit}/>
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-
-  console.log('team edit', state)
   return {
 
   }

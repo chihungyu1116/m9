@@ -28,7 +28,7 @@ class ResourcePage extends Component {
     const { dispatch } = this.props;
 
     return (
-      <div id='team-page'>
+      <div id='resource-page'>
         <ul className="nav nav-pills">
           <li className="nav-item">
             <Link className='btn btn-primary' to='/resource/new'>Create</Link>

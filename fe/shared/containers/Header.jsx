@@ -24,7 +24,7 @@ class Header extends React.Component {
     const { name } = this.props;
 
     return (
-      <nav id='header' className='bg-primary clearfix'>
+      <nav id='header' className='header-container bg-primary clearfix'>
         <div className='nav-brand'>
           <Link to='/'>Modulator</Link>
         </div>

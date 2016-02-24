@@ -1,0 +1,39 @@
+$form-width: 400px;
+
+.breadcrumb-container {
+  margin-bottom: 5px;
+}
+
+.notification-container {
+  padding: 15px;
+}
+
+.login-form {
+  margin-bottom: 10px;
+}
+
+#app-page {
+  & > .container-fluid {
+    padding: 15px;
+    background: f8f8f9;
+  }
+}
+
+#login-page {
+  margin: 0 auto;
+  padding: 15px;
+  width: $form-width;
+
+  & > p {
+    padding: 15px 0 0;
+    text-align: center;
+  }
+}
+
+#resource-edit-page {
+  width: $form-width;
+}
+
+#team-edit-page {
+  width: $form-width;
+}

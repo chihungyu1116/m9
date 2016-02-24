@@ -5,18 +5,6 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import LoginForm from '../forms/LoginForm';
 
-const STYLES = {
-  loginPage: {
-    margin: '0 auto',
-    padding: '15px',
-    width: '420px'
-  },
-  links: {
-    padding: '15px 0 0',
-    textAlign: 'center'
-  } 
-}
-
 class LoginPage extends Component {
   static propTypes = {
   };
@@ -37,9 +25,9 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <div id="login-page" style={STYLES.loginPage}>
+      <div id="login-page">
         <LoginForm onSubmit={this.handleSubmit}/>
-        <p style={STYLES.links}>
+        <p>
           <Link to="signup">Sign Up</Link>
         </p>
       </div>
