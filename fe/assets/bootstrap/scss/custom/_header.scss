@@ -44,7 +44,7 @@ $font-color: #373a3c;
   line-height: 20px;
   cursor: pointer;
 
-  .fa {
+  .nav-profile-fa {
     padding: 10px 5px;
     font-size: 18px;
   }
@@ -60,18 +60,35 @@ $font-color: #373a3c;
   }
 
   &.info {
+    position: relative;
     padding: 5px 10px;
     background: #892e65;
+
+    .count {
+      display: block;
+      margin-top: 8px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #d15b47;
+      line-height: 20px;
+      font-size: 11px;
+      text-align: center;
+      color: #fff;
+    }
   }
 
   &:hover {
-    .nav-profile-content {
+    .nav-profile-menu {
       display: block;
     }
   }
 }
 
-.nav-profile-content {
+.nav-profile-menu {
+  max-height: 310px;
+  overflow: auto;
+  box-sizing: border-box;
   display: none;
   list-style: none;
   width: 140px;
@@ -101,13 +118,19 @@ $font-color: #373a3c;
   }
 
   & > li {
+    padding: 5px;
+
+    // &:last-child {
+    //   padding-bottom: 0;      
+    // }
+
     &:hover {
       background-color:#fee074;
     }
 
     & > a {
       display: block;
-      padding-left: 10px;
+      padding: 0 10px;
       color: $font-color;
       line-height: 25px;
 
@@ -116,6 +139,25 @@ $font-color: #373a3c;
         text-decoration: none;
       }
     }
-  }  
+  }
 }
 
+.nav-profile-menu.detailed {
+  width: 300px;
+
+  & > li {
+    max-height: 75px;
+    overflow: hidden;
+
+    .fa {
+      color: #892e65;
+      padding-right: 10px;
+    }
+
+    a {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;  
+    }
+  }
+}

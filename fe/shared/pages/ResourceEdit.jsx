@@ -3,8 +3,10 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import ResourceForm from '../forms/ResourceForm';
 import {
-  createResourceAct,
-  updateResourceAct
+  requestResourceNewAct,
+  requestResourceShowAct,
+  requestResourceCreateAct,
+  requestResourceUpdateAct
 } from '../actions/Resource';
 
 class ResourceEditPage extends Component {
@@ -15,39 +17,49 @@ class ResourceEditPage extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(values) {
-    const { createResourceAct, updateResourceAct } = this.props;
+  componentWillMount() {
+    const { requestResourceNewAct, requestResourceShowAct, params } = this.props;
 
     if(this.isEditPage()) {
-      updateResourceAct(values);
+      requestResourceShowAct(params)
     } else {
-      createResourceAct(values);
+      requestResourceNewAct();
+    }
+  }
+
+  handleSubmit(values) {
+    const { requestResourceCreateAct, requestResourceUpdateAct } = this.props;
+
+    if(this.isEditPage()) {
+      requestResourceUpdateAct(values);
+    } else {
+      requestResourceCreateAct(values);
     }
   }
 
   isEditPage() {
     const { location } = this.props;
-    return location.pathname !== '/resource/new'    
+    return location.pathname !== '/resource/new';  
   }
 
   render() {
-    const {} = this.props;
+    const { resource } = this.props;
 
     return (
       <div id='resource-edit-page'>
-        <ResourceForm onSubmit={this.handleSubmit}/>
+        <ResourceForm onSubmit={ this.handleSubmit } />
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return {
-
-  }
+  return {};
 }
 
 export default connect(mapStateToProps, {
-  createResourceAct,
-  updateResourceAct
+  requestResourceNewAct,
+  requestResourceShowAct,
+  requestResourceCreateAct,
+  requestResourceUpdateAct
 })(ResourceEditPage)

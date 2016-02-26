@@ -37,8 +37,6 @@ function mapStateToProps(state) {
     session.setAuthToken(authToken);
   }
 
-  console.log('public state: ', state);
-
   return {
     authToken
   }

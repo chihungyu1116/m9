@@ -24,11 +24,11 @@ export function requestLogoutAct() {
   }
 }
 
-export const REQUEST_USER_ACT = 'REQUEST_USER_ACT';
+export const REQUEST_USER_SHOW_ACT = 'REQUEST_USER_SHOW_ACT';
 
-export function requestUserAct() {
+export function requestUserShowAct() {
   return {
-    type: REQUEST_USER_ACT,
+    type: REQUEST_USER_SHOW_ACT,
     promise: request.get(API.user)
   }
 }

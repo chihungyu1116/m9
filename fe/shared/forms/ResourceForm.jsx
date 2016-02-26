@@ -2,22 +2,26 @@ import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 
 export const form = 'resource';
-export const fields = ['controller', 'action'];
+export const fields = ['id', 'controller', 'action'];
 
 class ResourceForm extends Component {
   static propTypes = {
     fields: PropTypes.object.isRequired,
-    handleSubmit: PropTypes.func.isRequired
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('next props',nextProps)     
   }
 
   render() {
     const {
-      fields: { controller, action },
+      fields: { id, controller, action },
       handleSubmit
     } = this.props;
 
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={ handleSubmit.bind(this) }>
+        <input type="hidden" className="form-control" id="id" {...id} />
         <fieldset className="form-group">
           <label>Controller</label>
           <input type="text" className="form-control" id="controller" placeholder="Controller" {...controller} autoComplete="off"/>
@@ -33,11 +37,22 @@ class ResourceForm extends Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  const { resource = {} } = state.resourceReducer;
+  const { id, controller, action } = resource;
+
+  console.log('resource', resource)
+
+  return {
+    initialValues: {
+      id,
+      controller,
+      action
+    }
+  };
 }
 
 export default reduxForm({
   form,
   fields
 },
-mapStateToProps)(ResourceForm);
+mapStateToProps, {})(ResourceForm);

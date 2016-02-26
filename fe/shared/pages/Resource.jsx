@@ -2,14 +2,14 @@ import React, { Component , PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import List from '../components/List';
-import { requestResourcesAct } from '../actions/Resource';
+import { requestResourceIndexAct } from '../actions/Resource';
 
 const FIELDS = [{
   name: 'id', label: 'Id'
 }, {
-  name: 'action', label: 'Action'
-}, {
   name: 'controller', label: 'Controller'
+}, {
+  name: 'action', label: 'Action'
 }, {
   name: 'updated_at', label: 'Updated At', type: 'time'
 }, {
@@ -31,7 +31,7 @@ class ResourcePage extends Component {
   }
 
   componentWillMount() {
-    this.props.requestResourcesAct({});
+    this.props.requestResourceIndexAct({});
   }
 
   handleRowClick(row) {
@@ -67,5 +67,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-  requestResourcesAct
+  requestResourceIndexAct
 })(ResourcePage)

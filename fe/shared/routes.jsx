@@ -34,28 +34,28 @@ function checkAuth(nextState, replace, cbFunc) {
         return res;
       })
       .then((res) => {
-        cbFunc()
+        cbFunc();
       });
   } else {
-    cbFunc()
+    cbFunc();
   }
 }
 
 export default (
-  <Route component={Public} path='/'>
-    <IndexRoute component={Login} onEnter={checkRoute} />
-    <Route component={Login} path='login' onEnter={checkRoute} />
-    <Route breadcrumb='dashboard' component={App} path='/dashboard'>
-      <IndexRoute component={Dashboard} onEnter={checkAuth} />
-      <Route breadcrumb='team' component={Common} path='/team'>
-        <IndexRoute component={Team} onEnter={checkAuth} onEnter={checkAuth} />
-        <Route breadcrumb='new' component={TeamEdit} path='/team/new' onEnter={checkAuth} />
-        <Route breadcrumb='edit' component={TeamEdit} path='/team/edit/:id' onEnter={checkAuth} />
+  <Route component={ Public } path='/'>
+    <IndexRoute component={ Login } onEnter={ checkRoute } />
+    <Route component={ Login } path='login' onEnter={ checkRoute } />
+    <Route breadcrumb='dashboard' component={ App } path='/dashboard'>
+      <IndexRoute component={ Dashboard } onEnter={ checkAuth } />
+      <Route breadcrumb='team' component={ Common } path='/team'>
+        <IndexRoute component={ Team } onEnter={ checkAuth } onEnter={ checkAuth } />
+        <Route breadcrumb='new' component={ TeamEdit } path='/team/new' onEnter={ checkAuth } />
+        <Route breadcrumb='edit' component={ TeamEdit } path='/team/edit/:id' onEnter={ checkAuth } />
       </Route>
-      <Route breadcrumb='resource' component={Common} path='/resource'>
-        <IndexRoute component={Resource} onEnter={checkAuth} onEnter={checkAuth} />
-        <Route breadcrumb='new' component={ResourceEdit} path='/resource/new' onEnter={checkAuth} />
-        <Route breadcrumb='edit' component={ResourceEdit} path='/resource/edit/:id' onEnter={checkAuth} />
+      <Route breadcrumb='resource' component={ Common } path='/resource'>
+        <IndexRoute component={ Resource } onEnter={ checkAuth } onEnter={ checkAuth } />
+        <Route breadcrumb='new' component={ ResourceEdit } path='/resource/new' onEnter={ checkAuth } />
+        <Route breadcrumb='edit' component={ ResourceEdit } path='/resource/edit/:id' onEnter={ checkAuth } />
       </Route>
     </Route>
   </Route>

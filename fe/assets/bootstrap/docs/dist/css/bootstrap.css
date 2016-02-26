@@ -6251,7 +6251,7 @@ a.bg-danger:focus, a.bg-danger:hover {
   border-left: 1px solid #e1e1e1;
 }
 
-.nav-profile .fa {
+.nav-profile .nav-profile-fa {
   padding: 10px 5px;
   font-size: 18px;
 }
@@ -6267,22 +6267,40 @@ a.bg-danger:focus, a.bg-danger:hover {
 }
 
 .nav-profile.info {
+  position: relative;
   padding: 5px 10px;
   background: #892e65;
 }
 
-.nav-profile:hover .nav-profile-content {
+.nav-profile.info .count {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-top: 8px;
+  font-size: 11px;
+  line-height: 20px;
+  color: #fff;
+  text-align: center;
+  background-color: #d15b47;
+  border-radius: 50%;
+}
+
+.nav-profile:hover .nav-profile-menu {
   display: block;
 }
 
-.nav-profile-content {
+.nav-profile-menu {
   position: absolute;
   top: 50px;
   right: 0;
   z-index: 10;
   display: none;
   width: 140px;
+  max-height: 310px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 5px 0;
+  overflow: auto;
   color: #373a3c;
   list-style: none;
   background: #fff;
@@ -6291,7 +6309,7 @@ a.bg-danger:focus, a.bg-danger:hover {
           box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
 }
 
-.nav-profile-content:after {
+.nav-profile-menu:after {
   position: absolute;
   top: -6px;
   right: 10px;
@@ -6301,32 +6319,83 @@ a.bg-danger:focus, a.bg-danger:hover {
   border-left: 6px solid transparent;
 }
 
-.nav-profile-content > hr {
+.nav-profile-menu > hr {
   margin: 5px 0;
 }
 
-.nav-profile-content > li:hover {
+.nav-profile-menu > li {
+  padding: 5px;
+}
+
+.nav-profile-menu > li:hover {
   background-color: #fee074;
 }
 
-.nav-profile-content > li > a {
+.nav-profile-menu > li > a {
   display: block;
-  padding-left: 10px;
+  padding: 0 10px;
   line-height: 25px;
   color: #373a3c;
 }
 
-.nav-profile-content > li > a:hover {
+.nav-profile-menu > li > a:hover {
   color: #373a3c;
   text-decoration: none;
+}
+
+.nav-profile-menu.detailed {
+  width: 300px;
+}
+
+.nav-profile-menu.detailed > li {
+  max-height: 75px;
+  overflow: hidden;
+}
+
+.nav-profile-menu.detailed > li .fa {
+  padding-right: 10px;
+  color: #892e65;
+}
+
+.nav-profile-menu.detailed > li a {
+  display: -webkit-box;
+
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .list-component {
   padding-top: 20px;
 }
 
+.notification-enter {
+  opacity: .01;
+}
+
+.notification-enter.notification-enter-active {
+  opacity: 1;
+  -webkit-transition: opacity 250ms ease-in;
+       -o-transition: opacity 250ms ease-in;
+          transition: opacity 250ms ease-in;
+}
+
+.notification-leave {
+  opacity: 1;
+}
+
+.notification-leave.notification-leave-active {
+  opacity: .01;
+  -webkit-transition: opacity 250ms ease-in;
+       -o-transition: opacity 250ms ease-in;
+          transition: opacity 250ms ease-in;
+}
+
 .breadcrumb-container {
   margin-bottom: 5px;
+}
+
+.breadcrumb-container > li {
+  text-transform: capitalize;
 }
 
 .notification-container {
@@ -6335,11 +6404,6 @@ a.bg-danger:focus, a.bg-danger:hover {
 
 .login-form {
   margin-bottom: 10px;
-}
-
-#app-page > .container-fluid {
-  padding: 15px;
-  background: f8f8f9;
 }
 
 #login-page {
@@ -6359,5 +6423,9 @@ a.bg-danger:focus, a.bg-danger:hover {
 
 #team-edit-page {
   width: 400px;
+}
+
+#resource-page > .nav-pills {
+  margin-bottom: 20px;
 }
 /*# sourceMappingURL=bootstrap.css.map */

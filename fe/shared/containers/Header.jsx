@@ -2,7 +2,7 @@ import React, { Component , PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { 
-  requestUserAct,
+  requestUserShowAct,
   requestLogoutAct
 } from '../actions/Session'
 
@@ -13,15 +13,26 @@ class Header extends React.Component {
   }
 
   componentWillMount() {
-    this.props.requestUserAct();
+    this.props.requestUserShowAct();
   }
 
   handleLogout(e) {
     this.props.requestLogoutAct();
   }
 
+  unreadNotifications() {
+    const { notifications } = this.props;
+
+    return notifications.filter((notification) => {
+      return !notification.read;
+    });
+  }
+
   render() {
     const { name } = this.props;
+    const unreadNotifications = this.unreadNotifications();
+
+
 
     return (
       <nav id='header' className='header-container bg-primary clearfix'>
@@ -29,9 +40,9 @@ class Header extends React.Component {
           <Link to='/'>Modulator</Link>
         </div>
         <div className='nav-profile profile last clearfix'>
-          <div className='pull-left'><i className="fa fa-user icon"></i></div>
+          <div className='pull-left'><i className='fa fa-user nav-profile-fa'></i></div>
           <div className='pull-left'>Welcome, <br />{ name }</div>
-          <ul className='nav-profile-content'>
+          <ul className='nav-profile-menu'>
             <li><Link to='/settings'>Settings</Link></li>
             <li><Link to='/profile'>Profile</Link></li>
             <hr />
@@ -39,11 +50,34 @@ class Header extends React.Component {
           </ul>
         </div>
         <div className='nav-profile info clearfix'>
-          <div className='pull-left'><i className="fa fa-bell"></i></div>
+          <div className='pull-left'>
+            <i className='fa fa-bell nav-profile-fa'></i>
+          </div>
+          <div className='pull-left'>
+            <i className='count'>{ unreadNotifications.length }</i>
+          </div>
+          {
+            unreadNotifications.length === 0 ? null : (
+              <ul className='nav-profile-menu detailed'>
+                {
+                  unreadNotifications.map((unreadNotification, index) => {
+                    return (
+                      <li key={ index }>
+                        <Link to='/notifications'>
+                          <i className="fa fa-envelope-o"></i>
+                          { unreadNotification.message }
+                        </Link>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            )
+          }
         </div>
-        <div className='nav-profile menu clearfix'>
-          <div className='pull-left'><i className="fa fa-bars"></i></div>
-          <ul className='nav-profile-content'>
+        <div className='nav-profile menu'>
+          <i className='fa fa-bars nav-profile-fa'></i>
+          <ul className='nav-profile-menu'>
             <li><Link to='/resource'>Resource</Link></li>
             <li><Link to='/dashboard'>Dashboard</Link></li>
             <li><Link to='/team'>Team</Link></li>
@@ -56,13 +90,15 @@ class Header extends React.Component {
 
 function mapStateToProps(state) {
   const { name } = state.sessionReducer;
+  const { notifications = [] } = state.notificationReducer;
 
   return {
-    name
+    name,
+    notifications
   }
 }
 
 export default connect(mapStateToProps, {
   requestLogoutAct,
-  requestUserAct
+  requestUserShowAct
 })(Header)

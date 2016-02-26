@@ -1,29 +1,45 @@
 import {
-  CREATE_RESOURCE_ACT,
-  UPDATE_RESOURCE_ACT
+  REQUEST_RESOURCE_CREATE_ACT,
+  REQUEST_RESOURCE_UPDATE_ACT
 } from '../actions/Resource';
+
+import {
+  REQUEST_NOTIFICATION_CLOSE
+} from '../actions/Notification';
 
 export default function Notification(state = {}, action) {
   const actType = action.type;
   
-  if(actType === CREATE_RESOURCE_ACT) {
+  if(actType === REQUEST_RESOURCE_CREATE_ACT) {
     let notifications = state.notifications ? state.notifications.slice() : [];
 
-    notifications.push({
+    const notification = {
       type: 'success',
       message: 'Resource created successfully!'
-    });
+    };
 
-    return Object.assign({}, state, { notifications });
-  } else if(actType === UPDATE_RESOURCE_ACT) {
+    notifications.push(notification);
+
+    return Object.assign({}, state, {
+      notification,
+      notifications
+    });
+  } else if(actType === REQUEST_RESOURCE_UPDATE_ACT) {
     let notifications = state.notifications ? state.notifications.slice() : [];
 
-    notifications.push({
+    const notification = {
       type: 'success',
       message: 'Resource updated successfully!'
-    });
+    };
 
-    return Object.assign({}, state, { notifications });
+    notifications.push(notification);
+
+    return Object.assign({}, state, {
+      notification,
+      notifications
+    });
+  } else if(actType === REQUEST_NOTIFICATION_CLOSE) {
+    return Object.assign({}, state, { notification: null });
   }
 
   return state;

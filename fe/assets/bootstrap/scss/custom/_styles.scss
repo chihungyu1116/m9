@@ -2,6 +2,10 @@ $form-width: 400px;
 
 .breadcrumb-container {
   margin-bottom: 5px;
+
+  & > li {
+    text-transform: capitalize;
+  }
 }
 
 .notification-container {
@@ -10,13 +14,6 @@ $form-width: 400px;
 
 .login-form {
   margin-bottom: 10px;
-}
-
-#app-page {
-  & > .container-fluid {
-    padding: 15px;
-    background: f8f8f9;
-  }
 }
 
 #login-page {
@@ -36,4 +33,10 @@ $form-width: 400px;
 
 #team-edit-page {
   width: $form-width;
+}
+
+#resource-page {
+  & > .nav-pills {
+    margin-bottom: 20px;
+  }
 }

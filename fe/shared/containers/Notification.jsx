@@ -1,51 +1,55 @@
 import React, { Component , PropTypes } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { requestNotificationClose } from '../actions/Notification';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 class Notification extends React.Component {
-  static propTypes = {
-    notifications: PropTypes.array.isRequired
-  }
-
   constructor(props) {
     super(props);
+    this.handleNotificationClose = this.handleNotificationClose.bind(this);
   }
 
-  handleNotificationClick(index) {
-    console.log(index);
+  handleNotificationClose(index) {
+    this.props.requestNotificationClose({ index });
   }
 
   render() {
-    const { notifications } = this.props;
+    const { notification } = this.props;
+    let content = null;
+
+    if(notification) {
+      const { type, message } = notification;
+      const className = `alert alert-${type}`;
+
+      content = (
+        <div className={ className }>
+          { message }
+          <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={ this.handleNotificationClose }>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      )
+    }
 
     return (
       <div className="notification-container">
-      {
-        notifications.map((notification, index) => {
-          const { type, message } = notification;
-          const className = `alert alert-${type}`;
-
-          return (
-            <div className={className} key={index}>
-              { message }
-              <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={this.handleNotificationClick.bind(index)}>
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          )
-        })
-      }
+        <ReactCSSTransitionGroup transitionName="notification" transitionEnterTimeout={ 250 } transitionLeaveTimeout={ 250 }>
+        { content }
+        </ReactCSSTransitionGroup>
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  const { notifications = [] } = state.notificationReducer;
+  const { notification } = state.notificationReducer;
 
   return {
-    notifications
+    notification
   }
 }
 
-export default connect(mapStateToProps)(Notification)
+export default connect(mapStateToProps, {
+  requestNotificationClose  
+})(Notification)
