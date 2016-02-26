@@ -6295,18 +6295,46 @@ a.bg-danger:focus, a.bg-danger:hover {
   right: 0;
   z-index: 10;
   display: none;
+  color: #373a3c;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, .15);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
+}
+
+.nav-profile-menu > ul {
   width: 140px;
   max-height: 310px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 5px 0;
+  margin: 0;
   overflow: auto;
-  color: #373a3c;
   list-style: none;
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, .15);
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
-          box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
+}
+
+.nav-profile-menu > ul > hr {
+  margin: 5px 0;
+}
+
+.nav-profile-menu > ul > li {
+  padding: 5px;
+}
+
+.nav-profile-menu > ul > li:hover {
+  background-color: #fee074;
+}
+
+.nav-profile-menu > ul > li > a {
+  display: block;
+  padding: 0 10px;
+  line-height: 25px;
+  color: #373a3c;
+}
+
+.nav-profile-menu > ul > li > a:hover {
+  color: #373a3c;
+  text-decoration: none;
 }
 
 .nav-profile-menu:after {
@@ -6319,45 +6347,21 @@ a.bg-danger:focus, a.bg-danger:hover {
   border-left: 6px solid transparent;
 }
 
-.nav-profile-menu > hr {
-  margin: 5px 0;
-}
-
-.nav-profile-menu > li {
-  padding: 5px;
-}
-
-.nav-profile-menu > li:hover {
-  background-color: #fee074;
-}
-
-.nav-profile-menu > li > a {
-  display: block;
-  padding: 0 10px;
-  line-height: 25px;
-  color: #373a3c;
-}
-
-.nav-profile-menu > li > a:hover {
-  color: #373a3c;
-  text-decoration: none;
-}
-
-.nav-profile-menu.detailed {
+.nav-profile-menu.detailed > ul {
   width: 300px;
 }
 
-.nav-profile-menu.detailed > li {
+.nav-profile-menu.detailed > ul > li {
   max-height: 75px;
   overflow: hidden;
 }
 
-.nav-profile-menu.detailed > li .fa {
+.nav-profile-menu.detailed > ul > li .fa {
   padding-right: 10px;
   color: #892e65;
 }
 
-.nav-profile-menu.detailed > li a {
+.nav-profile-menu.detailed > ul > li a {
   display: -webkit-box;
 
   -webkit-line-clamp: 3;

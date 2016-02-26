@@ -42,12 +42,14 @@ class Header extends React.Component {
         <div className='nav-profile profile last clearfix'>
           <div className='pull-left'><i className='fa fa-user nav-profile-fa'></i></div>
           <div className='pull-left'>Welcome, <br />{ name }</div>
-          <ul className='nav-profile-menu'>
-            <li><Link to='/settings'>Settings</Link></li>
-            <li><Link to='/profile'>Profile</Link></li>
-            <hr />
-            <li onClick={this.handleLogout}><a>Logout</a></li>
-          </ul>
+          <div className='nav-profile-menu'>
+            <ul>
+              <li><Link to='/settings'>Settings</Link></li>
+              <li><Link to='/profile'>Profile</Link></li>
+              <hr />
+              <li onClick={this.handleLogout}><a>Logout</a></li>
+            </ul>
+          </div>
         </div>
         <div className='nav-profile info clearfix'>
           <div className='pull-left'>
@@ -58,7 +60,8 @@ class Header extends React.Component {
           </div>
           {
             unreadNotifications.length === 0 ? null : (
-              <ul className='nav-profile-menu detailed'>
+              <div className='nav-profile-menu detailed'>
+                <ul>
                 {
                   unreadNotifications.map((unreadNotification, index) => {
                     return (
@@ -70,18 +73,21 @@ class Header extends React.Component {
                       </li>
                     )
                   })
-                }
-              </ul>
+                  }
+                </ul>
+              </div>
             )
           }
         </div>
         <div className='nav-profile menu'>
           <i className='fa fa-bars nav-profile-fa'></i>
-          <ul className='nav-profile-menu'>
-            <li><Link to='/resource'>Resource</Link></li>
-            <li><Link to='/dashboard'>Dashboard</Link></li>
-            <li><Link to='/team'>Team</Link></li>
-          </ul>
+          <div className='nav-profile-menu'>
+            <ul>
+              <li><Link to='/resource'>Resource</Link></li>
+              <li><Link to='/dashboard'>Dashboard</Link></li>
+              <li><Link to='/team'>Team</Link></li>
+            </ul>
+          </div>
         </div>
       </nav>
     );

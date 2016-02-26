@@ -86,13 +86,7 @@ $font-color: #373a3c;
 }
 
 .nav-profile-menu {
-  max-height: 310px;
-  overflow: auto;
-  box-sizing: border-box;
   display: none;
-  list-style: none;
-  width: 140px;
-  padding: 5px 0;
   position: absolute;
   z-index: 10;
   top: $navbar-height;
@@ -101,6 +95,41 @@ $font-color: #373a3c;
   border: 1px solid rgba(0, 0, 0, 0.15);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
   color: $font-color;
+
+  & > ul {
+    box-sizing: border-box;
+    width: 140px;
+    max-height: 310px;
+    padding: 5px 0;
+    margin: 0;
+    list-style: none;
+
+    overflow: auto;
+
+    & > hr {
+      margin: 5px 0;
+    }
+
+    & > li {
+      padding: 5px;
+
+      &:hover {
+        background-color:#fee074;
+      }
+
+      & > a {
+        display: block;
+        padding: 0 10px;
+        color: $font-color;
+        line-height: 25px;
+
+        &:hover {
+          color: $font-color;
+          text-decoration: none;
+        }
+      }
+    }
+  }
 
   &:after {
     content: '';
@@ -112,52 +141,26 @@ $font-color: #373a3c;
     border-bottom: 6px solid #fff;
     
   }
-
-  & > hr {
-    margin: 5px 0;
-  }
-
-  & > li {
-    padding: 5px;
-
-    // &:last-child {
-    //   padding-bottom: 0;      
-    // }
-
-    &:hover {
-      background-color:#fee074;
-    }
-
-    & > a {
-      display: block;
-      padding: 0 10px;
-      color: $font-color;
-      line-height: 25px;
-
-      &:hover {
-        color: $font-color;
-        text-decoration: none;
-      }
-    }
-  }
 }
 
 .nav-profile-menu.detailed {
-  width: 300px;
+  & > ul {
+    width: 300px;
 
-  & > li {
-    max-height: 75px;
-    overflow: hidden;
+    & > li {
+      max-height: 75px;
+      overflow: hidden;
 
-    .fa {
-      color: #892e65;
-      padding-right: 10px;
-    }
+      .fa {
+        color: #892e65;
+        padding-right: 10px;
+      }
 
-    a {
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;  
+      a {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;  
+      }
     }
   }
 }
