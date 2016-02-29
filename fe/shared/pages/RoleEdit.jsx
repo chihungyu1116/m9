@@ -2,9 +2,9 @@ import React, { Component , PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import TeamForm from '../forms/TeamForm';
+import RoleForm from '../forms/RoleForm';
 
-class TeamEditPage extends Component {
+class RoleEditPage extends Component {
   static propTypes = {
   };
 
@@ -24,7 +24,7 @@ class TeamEditPage extends Component {
 
     return (
       <div id='team-edit-page'>
-        <TeamForm onSubmit={this._handleSubmit}/>
+        <RoleForm onSubmit={this._handleSubmit}/>
       </div>
     );
   }
@@ -38,4 +38,4 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
 
-})(TeamEditPage)
+})(RoleEditPage)

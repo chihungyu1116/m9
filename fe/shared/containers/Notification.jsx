@@ -7,10 +7,10 @@ import { Link } from 'react-router';
 class Notification extends React.Component {
   constructor(props) {
     super(props);
-    this.handleNotificationClose = this.handleNotificationClose.bind(this);
+    this._handleNotificationClose = this._handleNotificationClose.bind(this);
   }
 
-  handleNotificationClose(index) {
+  _handleNotificationClose(index) {
     this.props.requestNotificationClose({ index });
   }
 
@@ -25,7 +25,7 @@ class Notification extends React.Component {
       content = (
         <div className={ className }>
           { message }
-          <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={ this.handleNotificationClose }>
+          <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={ this._handleNotificationClose }>
             <span aria-hidden="true">&times;</span>
           </button>
         </div>

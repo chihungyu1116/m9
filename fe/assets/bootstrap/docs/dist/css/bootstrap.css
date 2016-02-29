@@ -6432,4 +6432,8 @@ a.bg-danger:focus, a.bg-danger:hover {
 #resource-page > .nav-pills {
   margin-bottom: 20px;
 }
+
+.tree .node-list {
+  padding: 10px;
+}
 /*# sourceMappingURL=bootstrap.css.map */

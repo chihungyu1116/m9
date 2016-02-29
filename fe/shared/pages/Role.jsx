@@ -4,12 +4,16 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import List from '../components/List';
 
-const HEADS = ['id', 'name', 'leads', 'allowed_roles'];
+const HEADS = ['id', 'name', 'leads', 'allowed_roles'] 
 
 class TeamPage extends Component {
   static propTypes = {
     
   };
+
+  constructor(props) {
+    super(props);
+  }
 
   _renderList() {
     const rows = [];

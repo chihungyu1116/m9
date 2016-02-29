@@ -27,14 +27,14 @@ class ResourcePage extends Component {
 
   constructor(props) {
     super(props);
-    this.handleRowClick = this.handleRowClick.bind(this);
+    this._handleRowClick = this._handleRowClick.bind(this);
   }
 
   componentWillMount() {
     this.props.requestResourceIndexAct({});
   }
 
-  handleRowClick(row) {
+  _handleRowClick(row) {
     this.context.router.replace(`/resource/edit/${row.id}`);
   }
 
@@ -52,7 +52,7 @@ class ResourcePage extends Component {
         <List
           rows={ rows }
           fields={ fields } 
-          handleRowClick={this.handleRowClick} />
+          handleRowClick={this._handleRowClick} />
       </div>
     );
   }

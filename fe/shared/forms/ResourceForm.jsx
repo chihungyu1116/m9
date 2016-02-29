@@ -9,10 +9,6 @@ class ResourceForm extends Component {
     fields: PropTypes.object.isRequired,
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    console.log('next props',nextProps)     
-  }
-
   render() {
     const {
       fields: { id, controller, action },
@@ -39,8 +35,6 @@ class ResourceForm extends Component {
 function mapStateToProps(state) {
   const { resource = {} } = state.resourceReducer;
   const { id, controller, action } = resource;
-
-  console.log('resource', resource)
 
   return {
     initialValues: {

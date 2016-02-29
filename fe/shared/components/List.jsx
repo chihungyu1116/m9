@@ -7,14 +7,9 @@ export default class List extends React.Component {
     rows: PropTypes.array.isRequired
   };
 
-  constructor(props) {
-    super(props);
-  }
-
-  handleRowClick(cols) {
+  _handleRowClick(cols) {
     this.props.handleRowClick(cols);
   }
-
 
   render() {
     const { fields = [], rows = [], handleRowClick = () => {} } = this.props;
@@ -52,7 +47,7 @@ export default class List extends React.Component {
               });
 
               return (
-                <tr onClick={ this.handleRowClick.bind(this, row) } key={ index }>
+                <tr onClick={ this._handleRowClick.bind(this, row) } key={ index }>
                   { cols }
                 </tr>
               )

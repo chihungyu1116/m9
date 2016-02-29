@@ -14,7 +14,7 @@ class ResourceEditPage extends Component {
 
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this._handleSubmit = this._handleSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -27,7 +27,7 @@ class ResourceEditPage extends Component {
     }
   }
 
-  handleSubmit(values) {
+  _handleSubmit(values) {
     const { requestResourceCreateAct, requestResourceUpdateAct } = this.props;
 
     if(this.isEditPage()) {
@@ -47,7 +47,7 @@ class ResourceEditPage extends Component {
 
     return (
       <div id='resource-edit-page'>
-        <ResourceForm onSubmit={ this.handleSubmit } />
+        <ResourceForm onSubmit={ this._handleSubmit } />
       </div>
     );
   }

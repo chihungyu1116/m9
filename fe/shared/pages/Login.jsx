@@ -15,10 +15,10 @@ class LoginPage extends Component {
 
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this._handleSubmit = this._handleSubmit.bind(this);
   }
 
-  handleSubmit(a,b,c) {
+  _handleSubmit(a,b,c) {
     console.log('submit: ',a,b,c)
     this.props.requestLoginAct()
   }
@@ -26,7 +26,7 @@ class LoginPage extends Component {
   render() {
     return (
       <div id="login-page">
-        <LoginForm onSubmit={this.handleSubmit}/>
+        <LoginForm onSubmit={this._handleSubmit}/>
         <p>
           <Link to="signup">Sign Up</Link>
         </p>

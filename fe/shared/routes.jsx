@@ -8,6 +8,8 @@ import Team from './pages/Team';
 import TeamEdit from './pages/TeamEdit';
 import Resource from './pages/Resource';
 import ResourceEdit from './pages/ResourceEdit';
+import Role from './pages/Role';
+import RoleEdit from './pages/RoleEdit';
 import Dashboard from './pages/Dashboard';
 import session from './lib/session';
 import request from './lib/request';
@@ -56,6 +58,11 @@ export default (
         <IndexRoute component={ Resource } onEnter={ checkAuth } onEnter={ checkAuth } />
         <Route breadcrumb='new' component={ ResourceEdit } path='/resource/new' onEnter={ checkAuth } />
         <Route breadcrumb='edit' component={ ResourceEdit } path='/resource/edit/:id' onEnter={ checkAuth } />
+      </Route>
+      <Route breadcrumb='role' component={ Common } path='/role'>
+        <IndexRoute component={ Role } onEnter={ checkAuth } onEnter={ checkAuth } />
+        <Route breadcrumb='new' component={ RoleEdit } path='/role/new' onEnter={ checkAuth } />
+        <Route breadcrumb='edit' component={ RoleEdit } path='/role/edit/:id' onEnter={ checkAuth } />
       </Route>
     </Route>
   </Route>

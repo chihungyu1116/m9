@@ -9,18 +9,18 @@ import {
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.handleLogout = this.handleLogout.bind(this);
+    this._handleLogout = this._handleLogout.bind(this);
   }
 
   componentWillMount() {
     this.props.requestUserShowAct();
   }
 
-  handleLogout(e) {
+  _handleLogout(e) {
     this.props.requestLogoutAct();
   }
 
-  unreadNotifications() {
+  _unreadNotifications() {
     const { notifications } = this.props;
 
     return notifications.filter((notification) => {
@@ -30,7 +30,7 @@ class Header extends React.Component {
 
   render() {
     const { name } = this.props;
-    const unreadNotifications = this.unreadNotifications();
+    const unreadNotifications = this._unreadNotifications();
 
 
 
@@ -47,7 +47,7 @@ class Header extends React.Component {
               <li><Link to='/settings'>Settings</Link></li>
               <li><Link to='/profile'>Profile</Link></li>
               <hr />
-              <li onClick={this.handleLogout}><a>Logout</a></li>
+              <li onClick={this._handleLogout}><a>Logout</a></li>
             </ul>
           </div>
         </div>

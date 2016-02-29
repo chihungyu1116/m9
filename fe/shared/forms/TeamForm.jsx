@@ -17,22 +17,22 @@ class TeamForm extends Component {
     } = this.props;
 
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={ handleSubmit }>
         <fieldset className="form-group">
           <label>Team Name</label>
-          <input type="text" className="form-control" id="name" placeholder="Team name" {...name} autoComplete="off"/>
+          <input type="text" className="form-control" id="name" placeholder="Team name" { ...name } autoComplete="off"/>
         </fieldset>
         <fieldset className="form-group">
           <label>Allowed Roles</label>
-          <input type="text" className="form-control" id="allowed_roles" placeholder="Allowed Roles" {...allowed_roles} />
+          <input type="text" className="form-control" id="allowed_roles" placeholder="Allowed Roles" { ...allowed_roles } />
         </fieldset>
         <fieldset className="form-group">
           <label>Leads</label>
-          <input type="text" className="form-control" id="leads" placeholder="Leads" {...leads} />
+          <input type="text" className="form-control" id="leads" placeholder="Leads" { ...leads } />
         </fieldset>
         <fieldset className="form-group">
           <label>Notes</label>
-          <textarea className="form-control" id="notes" placeholder="Notes" {...notes} />
+          <textarea className="form-control" id="notes" placeholder="Notes" { ...notes } />
         </fieldset>
         <button className="btn btn-primary btn-block" type="submit">Create</button>
       </form>
