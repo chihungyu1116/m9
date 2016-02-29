@@ -20,10 +20,10 @@ class RoleEditPage extends Component {
   render() {
     const { location } = this.props;
 
-    const isNew = location.pathname === '/team/new'
+    const isNew = location.pathname === '/role/new'
 
     return (
-      <div id='team-edit-page'>
+      <div id='role-edit-page'>
         <RoleForm onSubmit={this._handleSubmit}/>
       </div>
     );

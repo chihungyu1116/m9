@@ -1,5 +1,6 @@
 import {
-  UPDATE_RESOURCE_TREE_ACT
+  UPDATE_RESOURCE_TREE_ACT,
+  UPDATE_RESOURCE_INPUT_ACT
 } from '../actions/Role';
 
 let defaultState = {
@@ -40,7 +41,10 @@ export default function Role(state = defaultState, action) {
   if(actType === UPDATE_RESOURCE_TREE_ACT) {
     const { resourceTree } = action;
     return Object.assign({}, state, { resourceTree });
-  }
+  } else if(actType === UPDATE_RESOURCE_INPUT_ACT) {
+    const { resourceInput } = action;
+    return Object.assign({}, state, { resourceInput });
+  }// else if(actType === )
 
   return state;
 }

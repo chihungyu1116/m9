@@ -41,14 +41,18 @@ class Node extends React.Component {
   }
 
   render() {
-    const { id, label, checked, children, handleTreeChange } = this.props;
+    const { id, label, checked, children, handleTreeChange, isRoot } = this.props;
     const hasChild = !!(children && children.length);
 
     return (
-      <div id={'node-' + id}  >
-        <div className='clearfix'>
-          <div className='pull-left'>{ label }</div>
-          <div className='pull-left' onClick={ this._handleNodeClick }>
+      <div id={'node-' + id}>
+        <div className='clearfix node-control'>
+          <div className='node-control-label'>
+            { 
+              isRoot ? 
+              null : <span>-</span>
+            } { label }</div>
+          <div className='node-control-input' onClick={ this._handleNodeClick }>
             <i className={ "fa " + (checked ? "fa-check-square" : "fa-check-square-o") }></i>
           </div>
         </div>
@@ -101,7 +105,7 @@ export default class Tree extends React.Component {
 
     return (
       <div className='tree' ref='tree'>
-        <Node className='node' {...tree} handleTreeChange={this._handleTreeChange} />
+        <Node className='node' { ...tree } handleTreeChange={ this._handleTreeChange } isRoot={ true } />
       </div>
     )
   }

@@ -1,0 +1,32 @@
+.node-list {
+  padding-left: 10px;
+}
+
+.node-control {
+  
+}  
+
+.node-control-label {
+  float: left;
+  font-size: 18px;
+  text-transform: capitalize;
+}
+
+.node-control-input {
+  float: left;
+  font-size: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+
+  > i {
+    transition: color 0.15s linear;
+  }
+
+  .fa-check-square {
+    // color: #31708f;
+  }
+
+  .fa-check-square-o {
+    color: #c7c7c7;
+  }
+}

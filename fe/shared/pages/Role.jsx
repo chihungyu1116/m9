@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import List from '../components/List';
+import { requestRoleIndexAct } from '../actions/Role';
+
 
 const HEADS = ['id', 'name', 'leads', 'allowed_roles'] 
 
@@ -15,17 +17,13 @@ class TeamPage extends Component {
     super(props);
   }
 
-  _renderList() {
-    const rows = [];
-    const heads = HEADS;
-
-    return (
-      <List rows={rows} heads={heads} />
-    )
+  componentWillMount() {
+    this.props.requestRoleIndexAct({});
   }
 
   render() {
-    const { dispatch } = this.props;
+    const fields = FIELDS;
+    const rows = this.props.roles;
 
     return (
       <div id='team-page'>
@@ -34,18 +32,23 @@ class TeamPage extends Component {
             <Link className='btn btn-primary' to='/team/new'>Create</Link>
           </li>
         </ul>
-        { this._renderList() }
+        <List
+          rows={ rows }
+          fields={ fields }
+          handleRowClick={ this._handleRowClick } />
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return {
+  const { roles = [] } = state.roleReducer;
 
+  return {
+    roles
   }
 }
 
 export default connect(mapStateToProps, {
-
+  requestRoleIndexAct
 })(TeamPage)

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import Tree from '../components/Tree';
 import _cloneDeep from 'lodash/fp/cloneDeep';
-import { updateResourceTreeAct } from '../actions/Role';
+import { updateResourceTreeAct, updateResourceInputAct } from '../actions/Role';
 
 export const form = 'role';
 export const fields = ['id', 'name', 'resources'];
@@ -20,8 +20,31 @@ class RoleForm extends Component {
   componentWillUpdate(nextProps, nextState) {
   }
 
-  _handleTreeChange(tree, id) {
-    this.props.updateResourceTreeAct(tree);
+  _handleTreeChange(tree) {
+    const { updateResourceTreeAct, updateResourceInputAct } = this.props;
+
+    let resourceInput = [];
+    getResources(tree);
+
+    function getResources(tree) {
+      const controllers = tree.children;
+
+      controllers.forEach((controller) => {
+        const actions = controller.children || [];
+
+        actions.forEach((action) => {
+          if(action.checked) {
+            resourceInput.push({
+              controller: controller.label,
+              action: action.label
+            });  
+          }
+        });
+      });
+    }
+
+    updateResourceTreeAct(tree);
+    updateResourceInputAct(resourceInput);
   }
 
   render() {
@@ -33,13 +56,13 @@ class RoleForm extends Component {
 
     return (
       <form onSubmit={ handleSubmit.bind(this) }>
-        <input type="hidden" className="form-control" id="id" {...id} />
-        <input type="hidden" className="form-control" id="resources" {...resources} />
+        <input type="hidden" className="form-control" id="id" { ...id } />
+        <input type="hidden" className="form-control" id="resources" { ...resources } />
         <fieldset className="form-group">
           <label>Name</label>
           <input type="text" className="form-control" id="name" placeholder="Controller" {...name} autoComplete="off"/>
         </fieldset>
-        <Tree tree={resourceTree} handleTreeChange={this._handleTreeChange}/>
+        <Tree tree={ resourceTree } handleTreeChange={ this._handleTreeChange }/>
         <button className="btn btn-primary btn-block" type="submit">Submit</button>
       </form>
     )
@@ -47,11 +70,13 @@ class RoleForm extends Component {
 }
 
 function mapStateToProps(state) {
-  const { resourceTree } = state.roleReducer
+  const { resourceTree, resourceInput } = state.roleReducer
 
   return {
     resourceTree,
-    initialValues: {}
+    initialValues: {
+      resources: resourceInput
+    }
   };
 }
 
@@ -60,5 +85,6 @@ export default reduxForm({
   fields
 },
 mapStateToProps, {
-  updateResourceTreeAct
+  updateResourceTreeAct,
+  updateResourceInputAct
 })(RoleForm);

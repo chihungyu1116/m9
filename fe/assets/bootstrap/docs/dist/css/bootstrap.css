@@ -6394,6 +6394,33 @@ a.bg-danger:focus, a.bg-danger:hover {
           transition: opacity 250ms ease-in;
 }
 
+.node-list {
+  padding-left: 10px;
+}
+
+.node-control-label {
+  float: left;
+  font-size: 18px;
+  text-transform: capitalize;
+}
+
+.node-control-input {
+  float: left;
+  margin-left: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.node-control-input > i {
+  -webkit-transition: color .15s linear;
+       -o-transition: color .15s linear;
+          transition: color .15s linear;
+}
+
+.node-control-input .fa-check-square-o {
+  color: #c7c7c7;
+}
+
 .breadcrumb-container {
   margin-bottom: 5px;
 }
@@ -6431,9 +6458,5 @@ a.bg-danger:focus, a.bg-danger:hover {
 
 #resource-page > .nav-pills {
   margin-bottom: 20px;
-}
-
-.tree .node-list {
-  padding: 10px;
 }
 /*# sourceMappingURL=bootstrap.css.map */
