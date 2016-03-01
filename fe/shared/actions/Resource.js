@@ -1,11 +1,20 @@
 import request from '../lib/request';
 
 const API = {
-  create: '/resources/create',
-  update: '/resources/update',
   index: '/resources',
-  show: '/resources/:id'
+  show: '/resources/:id',
+  create: '/resources/create',
+  update: '/resources/update'
 };
+
+export const REQUEST_RESOURCE_INDEX_ACT = 'REQUEST_RESOURCE_INDEX_ACT';
+
+export function requestResourceIndexAct(data) {
+  return {
+    type: REQUEST_RESOURCE_INDEX_ACT,
+    promise: request.get(API.index, data)
+  }
+}
 
 export const REQUEST_RESOURCE_CREATE_ACT = 'REQUEST_RESOURCE_CREATE_ACT';
 
@@ -22,15 +31,6 @@ export function requestResourceUpdateAct(data) {
   return {
     type: REQUEST_RESOURCE_UPDATE_ACT,
     promise: request.put(API.update, data)
-  }
-}
-
-export const REQUEST_RESOURCE_INDEX_ACT = 'REQUEST_RESOURCE_INDEX_ACT';
-
-export function requestResourceIndexAct(data) {
-  return {
-    type: REQUEST_RESOURCE_INDEX_ACT,
-    promise: request.get(API.index, data)
   }
 }
 

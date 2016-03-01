@@ -12,7 +12,9 @@ export default class List extends React.Component {
   }
 
   render() {
-    const { fields = [], rows = [], handleRowClick = () => {} } = this.props;
+
+    console.log('what is this ',this);
+    const { fields = [], rows = [] } = this.props;
 
     if(rows.length === 0) {
       return (

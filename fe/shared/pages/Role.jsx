@@ -5,20 +5,37 @@ import { connect } from 'react-redux';
 import List from '../components/List';
 import { requestRoleIndexAct } from '../actions/Role';
 
-
-const HEADS = ['id', 'name', 'leads', 'allowed_roles'] 
+const FIELDS = [{
+  name: 'id', label: 'Id'
+}, {
+  name: 'name', label: 'Role Name'
+}, {
+  name: 'updated_at', label: 'Updated At', type: 'time'
+}, {
+  name: 'created_at', label: 'Created At', type: 'time'
+}];
 
 class TeamPage extends Component {
   static propTypes = {
     
   };
 
+  static contextTypes = { // https://facebook.github.io/react/docs/context.html
+    router: React.PropTypes.object.isRequired 
+  }
+
+
   constructor(props) {
     super(props);
+    this._handleRowClick = this._handleRowClick.bind(this);
   }
 
   componentWillMount() {
     this.props.requestRoleIndexAct({});
+  }
+
+  _handleRowClick(row) {
+    this.context.router.replace(`/role/edit/${row.id}`);
   }
 
   render() {
@@ -29,7 +46,7 @@ class TeamPage extends Component {
       <div id='team-page'>
         <ul className="nav nav-pills">
           <li className="nav-item">
-            <Link className='btn btn-primary' to='/team/new'>Create</Link>
+            <Link className='btn btn-primary' to='/role/new'>Create</Link>
           </li>
         </ul>
         <List

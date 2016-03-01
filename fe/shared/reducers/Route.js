@@ -4,6 +4,11 @@ import {
 } from '../actions/Resource';
 
 import {
+  REQUEST_ROLE_CREATE_ACT,
+  REQUEST_ROLE_UPDATE_ACT,
+} from '../actions/Role';
+
+import {
   AFTER_REDIRECT_ACT
 } from '../actions/Route';
 
@@ -21,6 +26,14 @@ export default function Route(state = {}, action) {
   } else if(actType === AFTER_REDIRECT_ACT) {
     return Object.assign({}, state, {
       redirect: null
+    });
+  } else if(actType === REQUEST_ROLE_CREATE_ACT) {
+    return Object.assign({}, state, {
+      redirect: '/role'
+    });
+  } else if(actType === REQUEST_ROLE_UPDATE_ACT) {
+    return Object.assign({}, state, {
+      redirect: '/role'
     });
   }
 

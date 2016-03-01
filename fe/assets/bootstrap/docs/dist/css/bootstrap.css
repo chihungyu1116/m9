@@ -6394,8 +6394,9 @@ a.bg-danger:focus, a.bg-danger:hover {
           transition: opacity 250ms ease-in;
 }
 
-.node-list {
-  padding-left: 10px;
+.tree {
+  padding: 10px;
+  background-color: #f7f7f9;
 }
 
 .node-control-label {
@@ -6405,7 +6406,7 @@ a.bg-danger:focus, a.bg-danger:hover {
 }
 
 .node-control-input {
-  float: left;
+  float: right;
   margin-left: 10px;
   font-size: 20px;
   cursor: pointer;
@@ -6419,6 +6420,28 @@ a.bg-danger:focus, a.bg-danger:hover {
 
 .node-control-input .fa-check-square-o {
   color: #c7c7c7;
+}
+
+.node-level-1 > .node-control > .node-control-label {
+  font-weight: bold;
+}
+
+.node-level-1 > .node-control > .node-control-input {
+  padding-right: 10px;
+}
+
+.node-level-2 {
+  padding: 10px 10px 10px 18px;
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+
+.node-level-2 > .node-control > .node-control-label {
+  font-weight: bold;
+}
+
+.node-level-3 {
+  padding-left: 18px;
 }
 
 .breadcrumb-container {
@@ -6438,7 +6461,7 @@ a.bg-danger:focus, a.bg-danger:hover {
 }
 
 #login-page {
-  width: 400px;
+  width: 480px;
   padding: 15px;
   margin: 0 auto;
 }
@@ -6449,11 +6472,15 @@ a.bg-danger:focus, a.bg-danger:hover {
 }
 
 #resource-edit-page {
-  width: 400px;
+  width: 480px;
 }
 
 #team-edit-page {
-  width: 400px;
+  width: 480px;
+}
+
+#role-edit-page {
+  width: 480px;
 }
 
 #resource-page > .nav-pills {

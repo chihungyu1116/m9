@@ -52,7 +52,7 @@ class ResourcePage extends Component {
         <List
           rows={ rows }
           fields={ fields } 
-          handleRowClick={this._handleRowClick} />
+          handleRowClick={ this._handleRowClick } />
       </div>
     );
   }

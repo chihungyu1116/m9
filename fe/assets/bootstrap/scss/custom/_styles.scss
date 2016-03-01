@@ -1,4 +1,4 @@
-$form-width: 400px;
+$form-width: 480px;
 
 .breadcrumb-container {
   margin-bottom: 5px;
@@ -32,6 +32,10 @@ $form-width: 400px;
 }
 
 #team-edit-page {
+  width: $form-width;
+}
+
+#role-edit-page {
   width: $form-width;
 }
 

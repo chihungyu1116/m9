@@ -2,7 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import Tree from '../components/Tree';
 import _cloneDeep from 'lodash/fp/cloneDeep';
-import { updateResourceTreeAct, updateResourceInputAct } from '../actions/Role';
+import {
+  updateRoleResourcesAct
+} from '../actions/Role';
 
 export const form = 'role';
 export const fields = ['id', 'name', 'resources'];
@@ -17,11 +19,8 @@ class RoleForm extends Component {
     this._handleTreeChange = this._handleTreeChange.bind(this);
   }
 
-  componentWillUpdate(nextProps, nextState) {
-  }
-
   _handleTreeChange(tree) {
-    const { updateResourceTreeAct, updateResourceInputAct } = this.props;
+    const { updateRoleResourcesAct } = this.props;
 
     let resourceInput = [];
     getResources(tree);
@@ -43,8 +42,7 @@ class RoleForm extends Component {
       });
     }
 
-    updateResourceTreeAct(tree);
-    updateResourceInputAct(resourceInput);
+    updateRoleResourcesAct(resourceInput);
   }
 
   render() {
@@ -69,13 +67,91 @@ class RoleForm extends Component {
   }
 }
 
+
+
 function mapStateToProps(state) {
-  const { resourceTree, resourceInput } = state.roleReducer
+  const { role, roleResources, resources } = state.roleReducer
+  let counter = 0;
+
+  let resourceTree = {
+    id: counter++,
+    label: 'all',
+    checked: false,
+    children: []
+  }
+
+  createTree(roleResources, resources);
+
+  function createTree(roleResources, resources) {
+    let controllerMap = {};
+
+    // Categorized controller and actions
+    resources.forEach((resource) => {
+      const controllerName = resource.controller;
+      const actionName = resource.action;
+
+      controllerMap[controllerName] = controllerMap[controllerName] || {};
+      controllerMap[controllerName][actionName] = {
+        name: actionName,
+        checked: false
+      };
+    });
+
+
+    console.log(roleResources)
+    // Map selected resource
+    roleResources.forEach((roleResource) => {
+      const controllerName = roleResource.controller;
+      const actionName = roleResource.action;
+      
+      controllerMap[controllerName][actionName].checked = true;
+    });
+
+    let controllers = resourceTree.children;
+    let allControllersChecked = true;
+
+    // Build tree
+    for(let controllerName in controllerMap) {
+      let controller = {
+        id: counter++,
+        label: controllerName,
+        checked: controllerMap[controllerName].checked,
+        children: []
+      };
+
+      let allActionsChecked = true;
+
+      for(let actionName in controllerMap[controllerName]) {
+        allActionsChecked = allActionsChecked && controllerMap[controllerName][actionName].checked;
+
+        let action = {
+          id: counter++,
+          label: actionName,
+          checked: controllerMap[controllerName][actionName].checked
+        };
+
+        controller.children.push(action);
+      }
+
+      if(allActionsChecked) {
+        controller.checked = true;
+      }
+
+      controllers.push(controller);
+      allControllersChecked = allControllersChecked && controller.checked;
+    }
+
+    if(allControllersChecked) {
+      resourceTree.checked = true;
+    }
+  }
 
   return {
     resourceTree,
     initialValues: {
-      resources: resourceInput
+      id: role.id,
+      name: role.name,
+      resources: roleResources
     }
   };
 }
@@ -85,6 +161,5 @@ export default reduxForm({
   fields
 },
 mapStateToProps, {
-  updateResourceTreeAct,
-  updateResourceInputAct
+  updateRoleResourcesAct
 })(RoleForm);

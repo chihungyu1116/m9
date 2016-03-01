@@ -1,10 +1,11 @@
-.node-list {
-  padding-left: 10px;
-}
+// .node-list {
+//   padding-left: 18px;
+// }
 
-.node-control {
-  
-}  
+.tree {
+  padding: 10px;
+  background-color: #f7f7f9;
+}
 
 .node-control-label {
   float: left;
@@ -13,7 +14,7 @@
 }
 
 .node-control-input {
-  float: left;
+  float: right;
   font-size: 20px;
   margin-left: 10px;
   cursor: pointer;
@@ -23,10 +24,35 @@
   }
 
   .fa-check-square {
-    // color: #31708f;
+  
   }
 
   .fa-check-square-o {
     color: #c7c7c7;
   }
+}
+
+.node-level-1 {
+  & > .node-control {
+    & > .node-control-label {
+      font-weight: bold;
+    }
+    & > .node-control-input {
+      padding-right: 10px;
+    }
+  }
+}
+
+.node-level-2 {
+  padding: 10px 10px 10px 18px;
+  background-color: #fff;
+  margin-bottom: 10px;
+
+  & > .node-control > .node-control-label {
+    font-weight: bold;
+  }
+}
+
+.node-level-3 {
+  padding-left: 18px;
 }

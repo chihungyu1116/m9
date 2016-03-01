@@ -1,50 +1,40 @@
 import {
-  UPDATE_RESOURCE_TREE_ACT,
-  UPDATE_RESOURCE_INPUT_ACT
+  UPDATE_ROLE_RESOURCES_ACT,
+  REQUEST_ROLE_INDEX_ACT,
+  REQUEST_ROLE_SHOW_ACT,
+  REQUEST_ROLE_NEW_ACT
 } from '../actions/Role';
 
-let defaultState = {
-  resourceTree: {
-    id: 1,
-    label: 'foo',
-    checked: false,
-    children: [
-      {
-        id: 2,
-        label: 'foo1',
-        checked: false,
-      }, {
-        id: 3,
-        label: 'foo2',
-        checked: false,
-        children: [
-          {
-            id: 4,
-            label: 'bar3',
-            checked: true,
-            children: [{
-              id: 5,
-              label: 'bar4',
-              checked: true
-            }]
-          }
-        ]
-      }
-
-    ]
-  }
+const defaultState = {
+  role: {},
+  roleResources: [],
+  resources: []
 }
 
 export default function Role(state = defaultState, action) {
   const actType = action.type;
 
-  if(actType === UPDATE_RESOURCE_TREE_ACT) {
-    const { resourceTree } = action;
-    return Object.assign({}, state, { resourceTree });
-  } else if(actType === UPDATE_RESOURCE_INPUT_ACT) {
-    const { resourceInput } = action;
-    return Object.assign({}, state, { resourceInput });
-  }// else if(actType === )
+  if(actType === UPDATE_ROLE_RESOURCES_ACT) {
+    const { roleResources } = action;
+    return Object.assign({}, state, { roleResources });
+  } else if(actType === REQUEST_ROLE_INDEX_ACT) {
+    const roles = action.res.data;
+    return Object.assign({}, state, { roles });     
+  } else if(actType === REQUEST_ROLE_SHOW_ACT) {
+    const data = action.res.data;
+    return Object.assign({}, state, {
+      role: data.role,
+      roleResources: data.role_resources,
+      resources: data.resources
+    });
+  } else if(actType === REQUEST_ROLE_NEW_ACT) {
+    const data = action.res.data;
+    return Object.assign({}, state, {
+      role: {},
+      roleResources: [],
+      resources: data.resources
+    });
+  }
 
   return state;
 }

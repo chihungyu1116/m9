@@ -3,18 +3,19 @@ import _cloneDeep from 'lodash/fp/cloneDeep';
 
 class ChildNode extends React.Component {
   static propTypes: {
+    level: PropTypes.number.isRequired,
     checked: PropTypes.bool.isRequired,
     handleTreeChange: PropTypes.func.isRequired
   }
 
   render() {
-    const { children, checked, handleTreeChange } = this.props;
+    const { children, checked, handleTreeChange, level } = this.props;
     
     return (
       <div className='node-list'>
         {
           children.map((child, index) => {
-            return <Node key={index} {...child} handleTreeChange={ handleTreeChange } />
+            return <Node key={index} {...child} handleTreeChange={ handleTreeChange } level={level}/>
           })
         }
       </div>
@@ -25,6 +26,7 @@ class ChildNode extends React.Component {
 class Node extends React.Component {
   static propTypes: {
     id: PropTypes.number.isRequired,
+    level: PropTypes.number.isRequired,
     label: PropTypes.string.isRequired,
     checked: PropTypes.bool.isRequired,
     expanded: PropTypes.bool,
@@ -41,24 +43,20 @@ class Node extends React.Component {
   }
 
   render() {
-    const { id, label, checked, children, handleTreeChange, isRoot } = this.props;
+    const { id, label, checked, children, handleTreeChange, isRoot, level } = this.props;
     const hasChild = !!(children && children.length);
 
     return (
-      <div id={'node-' + id}>
+      <div id={'node-' + id} className={ 'node-level-' + level }>
         <div className='clearfix node-control'>
-          <div className='node-control-label'>
-            { 
-              isRoot ? 
-              null : <span>-</span>
-            } { label }</div>
+          <div className='node-control-label'>{ label }</div>
           <div className='node-control-input' onClick={ this._handleNodeClick }>
             <i className={ "fa " + (checked ? "fa-check-square" : "fa-check-square-o") }></i>
           </div>
         </div>
         {
           hasChild ?
-            <ChildNode checked={ checked } children={ children } handleTreeChange={ handleTreeChange } /> : null
+            <ChildNode checked={ checked } children={ children } handleTreeChange={ handleTreeChange } level={level + 1}/> : null
         }
       </div>
     )
@@ -105,7 +103,7 @@ export default class Tree extends React.Component {
 
     return (
       <div className='tree' ref='tree'>
-        <Node className='node' { ...tree } handleTreeChange={ this._handleTreeChange } isRoot={ true } />
+        <Node className='node' { ...tree } handleTreeChange={ this._handleTreeChange } isRoot={ true } level={1}/>
       </div>
     )
   }
