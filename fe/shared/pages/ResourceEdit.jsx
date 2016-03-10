@@ -20,7 +20,7 @@ class ResourceEditPage extends Component {
   componentWillMount() {
     const { requestResourceNewAct, requestResourceShowAct, params } = this.props;
 
-    if(this.isEditPage()) {
+    if(this._isEditPage()) {
       requestResourceShowAct(params)
     } else {
       requestResourceNewAct();
@@ -30,21 +30,19 @@ class ResourceEditPage extends Component {
   _handleSubmit(values) {
     const { requestResourceCreateAct, requestResourceUpdateAct } = this.props;
 
-    if(this.isEditPage()) {
+    if(this._isEditPage()) {
       requestResourceUpdateAct(values);
     } else {
       requestResourceCreateAct(values);
     }
   }
 
-  isEditPage() {
+  _isEditPage() {
     const { location } = this.props;
     return location.pathname !== '/resource/new';  
   }
 
   render() {
-    const { resource } = this.props;
-
     return (
       <div id='resource-edit-page'>
         <ResourceForm onSubmit={ this._handleSubmit } />

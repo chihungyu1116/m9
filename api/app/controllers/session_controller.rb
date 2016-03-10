@@ -11,7 +11,6 @@ class SessionController < BaseController
 
   def login
     @member = Member.first
-
     render json: @member.public_info
   end
 

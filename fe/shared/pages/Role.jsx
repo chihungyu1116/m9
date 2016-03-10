@@ -43,7 +43,7 @@ class TeamPage extends Component {
     const rows = this.props.roles;
 
     return (
-      <div id='team-page'>
+      <div id='role-page'>
         <ul className="nav nav-pills">
           <li className="nav-item">
             <Link className='btn btn-primary' to='/role/new'>Create</Link>

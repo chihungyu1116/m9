@@ -6471,19 +6471,76 @@ a.bg-danger:focus, a.bg-danger:hover {
   text-align: center;
 }
 
+#resource-page > .nav-pills {
+  margin-bottom: 20px;
+}
+
 #resource-edit-page {
   width: 480px;
 }
 
-#team-edit-page {
-  width: 480px;
+#team-edit-page .user-look-up {
+  margin-bottom: 15px;
+}
+
+#role-page > .nav-pills {
+  margin-bottom: 20px;
 }
 
 #role-edit-page {
   width: 480px;
 }
 
-#resource-page > .nav-pills {
-  margin-bottom: 20px;
+.list-component .list-tag {
+  margin-right: 10px;
+}
+
+.list-component .list-tag:last-child {
+  margin-right: 0;
+}
+
+.button-list-component {
+  padding: 15px 10px 5px;
+  border: 1px solid #ccc;
+}
+
+.button-list-component .btn {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  outline: none;
+}
+
+.button-list-component .btn:last-child {
+  margin-right: 0;
+}
+
+.user-form {
+  position: relative;
+  padding: 15px;
+  border: 1px solid #ccc;
+}
+
+.user-form > .form-control {
+  margin-top: 10px;
+  border: none;
+  border-bottom: 1px solid #eee;
+}
+
+.user-form > .btn {
+  margin-top: 15px;
+}
+
+.user-form > label {
+  position: absolute;
+  top: 13px;
+  right: 16px;
+}
+
+.container-xs {
+  padding-top: 10px;
+}
+
+.container-xs:first-child {
+  padding-top: 0;
 }
 /*# sourceMappingURL=bootstrap.css.map */

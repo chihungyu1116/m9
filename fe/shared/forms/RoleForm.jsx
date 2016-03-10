@@ -47,18 +47,22 @@ class RoleForm extends Component {
 
   render() {
     const {
-      fields: { id, name, resources },
+      fields: {
+        id: idField,
+        name: nameField,
+        resources: resourcesField 
+      },
       handleSubmit,
       resourceTree
     } = this.props;
 
     return (
       <form onSubmit={ handleSubmit.bind(this) }>
-        <input type="hidden" className="form-control" id="id" { ...id } />
-        <input type="hidden" className="form-control" id="resources" { ...resources } />
+        <input type="hidden" className="form-control" id="id" { ...idField } />
+        <input type="hidden" className="form-control" id="resources" { ...resourcesField } />
         <fieldset className="form-group">
           <label>Name</label>
-          <input type="text" className="form-control" id="name" placeholder="Controller" {...name} autoComplete="off"/>
+          <input type="text" className="form-control" id="name" placeholder="Controller" { ...nameField } autoComplete="off"/>
         </fieldset>
         <Tree tree={ resourceTree } handleTreeChange={ this._handleTreeChange }/>
         <button className="btn btn-primary btn-block" type="submit">Submit</button>
@@ -97,8 +101,6 @@ function mapStateToProps(state) {
       };
     });
 
-
-    console.log(roleResources)
     // Map selected resource
     roleResources.forEach((roleResource) => {
       const controllerName = roleResource.controller;
@@ -146,11 +148,13 @@ function mapStateToProps(state) {
     }
   }
 
+  const { id = '', name = '' } = role;
+
   return {
     resourceTree,
     initialValues: {
-      id: role.id,
-      name: role.name,
+      id,
+      name,
       resources: roleResources
     }
   };

@@ -3,25 +3,50 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import List from '../components/List';
+import { requestTeamIndexAct } from '../actions/Team';
 
-const HEADS = ['id', 'name', 'leads', 'allowed_roles'];
+const FIELDS = [{
+  name: 'id', label: 'Id'
+}, {
+  name: 'name', label: 'Team Name'
+}, {
+  name: 'leads', label: 'Leaders', type: 'tag'
+}, {
+  name: 'team_roles', label: 'Permitted Roles', type: 'tag'
+}, {
+  name: 'notes', label: 'Notes'
+}, {
+  name: 'updated_at', label: 'Updated At', type: 'time'
+}, {
+  name: 'created_at', label: 'Created At', type: 'time'
+}];
 
 class TeamPage extends Component {
   static propTypes = {
     
   };
 
-  _renderList() {
-    const rows = [];
-    const heads = HEADS;
+  static contextTypes = { // https://facebook.github.io/react/docs/context.html
+    router: React.PropTypes.object.isRequired 
+  }
 
-    return (
-      <List rows={rows} heads={heads} />
-    )
+  constructor(props) {
+    super(props);
+    this._handleRowClick = this._handleRowClick.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.requestTeamIndexAct({});
+  }
+
+
+  _handleRowClick(row) {
+    this.context.router.replace(`/team/edit/${row.id}`);
   }
 
   render() {
-    const { dispatch } = this.props;
+    const fields = FIELDS;
+    const rows = this.props.teams;
 
     return (
       <div id='team-page'>
@@ -30,18 +55,25 @@ class TeamPage extends Component {
             <Link className='btn btn-primary' to='/team/new'>Create</Link>
           </li>
         </ul>
-        { this._renderList() }
+        <List
+          rows={ rows }
+          fields={ fields } 
+          handleRowClick={ this._handleRowClick } />
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return {
+  const { teams = [] } = state.teamReducer;
 
+  console.log('teams',teams)
+
+  return {
+    teams
   }
 }
 
 export default connect(mapStateToProps, {
-
+  requestTeamIndexAct
 })(TeamPage)

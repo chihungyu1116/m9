@@ -17,6 +17,7 @@ export default function Session(state = {}, action) {
     return Object.assign({}, state, {
       id: null,
       name: null,
+      roles: [],
       authToken: null
     });
   } else if(actType === REQUEST_USER_SHOW_ACT) {
@@ -25,6 +26,7 @@ export default function Session(state = {}, action) {
     return Object.assign({}, state, {
       id: data.id,
       name: data.name,
+      roles: data.roles,
       authToken: data.auth_token,
     });
   }

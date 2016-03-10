@@ -11,20 +11,24 @@ class ResourceForm extends Component {
 
   render() {
     const {
-      fields: { id, controller, action },
+      fields: {
+        id: idField,
+        controller: controllerField,
+        action: actionField
+      },
       handleSubmit
     } = this.props;
 
     return (
       <form onSubmit={ handleSubmit.bind(this) }>
-        <input type="hidden" className="form-control" id="id" {...id} />
+        <input type="hidden" className="form-control" id="id" { ...idField } />
         <fieldset className="form-group">
           <label>Controller</label>
-          <input type="text" className="form-control" id="controller" placeholder="Controller" {...controller} autoComplete="off"/>
+          <input type="text" className="form-control" id="controller" placeholder="Controller" { ...controllerField } autoComplete="off"/>
         </fieldset>
         <fieldset className="form-group">
           <label>Action</label>
-          <input type="text" className="form-control" id="action" placeholder="Action" {...action} autoComplete="off"/>
+          <input type="text" className="form-control" id="action" placeholder="Action" { ...actionField } autoComplete="off"/>
         </fieldset>
         <button className="btn btn-primary btn-block" type="submit">Submit</button>
       </form>

@@ -59,6 +59,7 @@ export function requestRoleShowAct(data) {
 export const REQUEST_ROLE_NEW_ACT = 'REQUEST_ROLE_NEW_ACT';
 
 export function requestRoleNewAct() {
+  console.log('request new ', API.new)
   return {
     type: REQUEST_ROLE_NEW_ACT,
     promise: request.get(API.new)

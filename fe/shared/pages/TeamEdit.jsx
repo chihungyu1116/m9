@@ -3,6 +3,15 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import TeamForm from '../forms/TeamForm';
+import UserForm from '../forms/UserForm';
+import UserSearchForm from '../forms/UserSearchForm';
+import {
+  requestTeamNewAct,
+  requestTeamShowAct,
+  requestTeamCreateAct,
+  requestTeamUpdateAct,
+  handleRoleSelectAct
+} from '../actions/Team';
 
 class TeamEditPage extends Component {
   static propTypes = {
@@ -10,32 +19,69 @@ class TeamEditPage extends Component {
 
   constructor(props) {
     super(props);
-    // this._handleSubmit = this._handleSubmit.bind(this);
+    this._handleTeamSubmit = this._handleTeamSubmit.bind(this);
+    this._handleUserSubmit = this._handleUserSubmit.bind(this);
+    this._handleUserSearchSubmit = this._handleUserSearchSubmit.bind(this);
   }
 
-  _handleSubmit() {
-    console.log('click foo')
+  componentWillMount() {
+    const { requestTeamNewAct, requestTeamShowAct, params } = this.props;
+
+    if(this._isEditPage()) {
+      requestTeamShowAct(params)
+    } else {
+      requestTeamNewAct();
+    }
+  }
+
+  _handleTeamSubmit(values) {
+    const { requestTeamCreateAct, requestTeamUpdateAct } = this.props;
+
+    if(this._isEditPage()) {
+      requestTeamUpdateAct(values);
+    } else {
+      requestTeamCreateAct(values);
+    }
+  }
+
+  _handleUserSubmit(values) {
+    console.log('values: ', values);
+  }
+
+  _handleUserSearchSubmit(values) {
+    console.log('user search submit', values);
+  }
+
+  _isEditPage() {
+    const { location } = this.props;
+    return location.pathname !== '/team/new';  
   }
 
   render() {
-    const { location } = this.props;
-
-    const isNew = location.pathname === '/team/new'
+    const { handleRoleSelectAct } = this.props
 
     return (
       <div id='team-edit-page'>
-        <TeamForm onSubmit={this._handleSubmit}/>
+        <div className='col-sm-6 container-xs'>
+          <TeamForm onSubmit={ this._handleTeamSubmit } handleRoleSelect={ handleRoleSelectAct }/>
+        </div>
+        <div className='col-sm-6 container-xs'>
+          <UserSearchForm onSubmit={ this._handleUserSearchSubmit } />
+          <UserForm onSubmit={ this._handleUserSubmit } />
+        </div>
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return {
-
-  }
+  return {};
 }
 
 export default connect(mapStateToProps, {
-
+  requestTeamNewAct,
+  requestTeamShowAct,
+  requestTeamCreateAct,
+  requestTeamUpdateAct,
+  handleRoleSelectAct
 })(TeamEditPage)

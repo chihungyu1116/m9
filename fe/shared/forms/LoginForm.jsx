@@ -13,14 +13,18 @@ class LoginForm extends Component {
 
   render() {
     const {
-      fields: { username, password, tenant },
+      fields: {
+        username: usernameField,
+        password: passwordField,
+        tenant: tenantField
+      },
       handleSubmit
     } = this.props;
 
     return (
       <form className='login-form' onSubmit={ handleSubmit }>
         <div>
-          <select className="c-select" { ...tenant }>
+          <select className="c-select" { ...tenantField }>
             <option value="walmart">Walmart</option>
             <option value="sams">Sams</option>
             <option value="asda">ASDA</option>
@@ -29,11 +33,11 @@ class LoginForm extends Component {
 
         <fieldset className="form-group">
           <label>Username</label>
-          <input type="text" className="form-control" id="username" placeholder="Username" { ...username } autoComplete="off"/>
+          <input type="text" className="form-control" id="username" placeholder="Username" { ...usernameField } autoComplete="off"/>
         </fieldset>
         <fieldset className="form-group">
           <label>Password</label>
-          <input type="password" className="form-control" id="password" placeholder="Password" { ...password } autoComplete="off"/>
+          <input type="password" className="form-control" id="password" placeholder="Password" { ...passwordField } autoComplete="off"/>
         </fieldset>
         <button className="btn btn-primary btn-block" type="submit">Login</button>
       </form>

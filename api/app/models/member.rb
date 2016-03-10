@@ -18,9 +18,10 @@ class Member < ApplicationRecord
 
   def public_info
     {
-      id: id,
-      name: name,
-      auth_token: AuthToken.encode(user_id: id)
+      id: self.id,
+      name: self.name,
+      roles: self.roles,
+      auth_token: AuthToken.encode(user_id: self.id)
     }
   end
 

@@ -12,8 +12,6 @@ export default class List extends React.Component {
   }
 
   render() {
-
-    console.log('what is this ',this);
     const { fields = [], rows = [] } = this.props;
 
     if(rows.length === 0) {
@@ -43,6 +41,13 @@ export default class List extends React.Component {
 
                 if(field.type === 'time') {
                   val = moment(val).format('lll');
+                } else if(field.type === 'tag') {
+                  val = val || '';
+                  val = val.split(',').map((v, index) => {
+                    return (
+                      <span className="list-tag label label-default" key={ index }>{ v }</span>
+                    )
+                  });
                 }
 
                 return <td key={ index }>{ val }</td>;

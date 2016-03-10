@@ -6,10 +6,9 @@ class RolesController < ApplicationController
 
   def create
     @role = Role.create create_params
-    @role.resource.delete_all
 
     resource_params.each do |resource|
-      @role.resource.create(controller: resource[:controller], action: resource[:action])
+      @role.resource << Resource.where(controller: resource[:controller], action: resource[:action]).first
     end
 
     render json: @role
@@ -21,7 +20,7 @@ class RolesController < ApplicationController
     @role.resource.delete_all
 
     resource_params.each do |resource|
-      @role.resource.create(controller: resource[:controller], action: resource[:action])
+      @role.resource << Resource.where(controller: resource[:controller], action: resource[:action]).first
     end
 
     render json: @role
