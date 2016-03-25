@@ -2,8 +2,7 @@ import {
   REQUEST_TEAM_NEW_ACT,
   REQUEST_TEAM_SHOW_ACT,
   REQUEST_TEAM_INDEX_ACT,
-  REQUEST_TEAM_UPDATE_ACT,
-  HANDLE_ROLE_SELECT_ACT
+  REQUEST_TEAM_UPDATE_ACT
 } from '../actions/Team';
 
 export default function Team(state = {}, action) {
@@ -44,16 +43,6 @@ export default function Team(state = {}, action) {
       teamMembers: team_members,
       roles,
       users
-    });
-  } else if(actType === REQUEST_TEAM_UPDATE_ACT + '_SUCCESS') { 
-    return Object.assign({}, state, {
-      clearForm: true
-    });
-  } else if(actType === HANDLE_ROLE_SELECT_ACT) {
-    const { teamRoles } = action;
-    
-    return Object.assign({}, state, {
-      teamRoles
     });
   }
 

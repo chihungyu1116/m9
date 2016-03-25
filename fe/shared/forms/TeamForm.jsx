@@ -5,15 +5,12 @@ import ButtonList from '../components/ButtonList';
 export const form = 'team';
 export const fields = ['id', 'name', 'notes', 'teamRoles'];
 
+// Complex use case of custom input
+// http://redux-form.com/4.2.0/#/examples/complex?_k=u30idu
 class TeamForm extends Component {
   static propTypes = {
     fields: PropTypes.object.isRequired,
-    handleRoleSelect: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired
-  }
-
-  componentWillMount() {
-    console.log('mount again?')  
   }
 
   render() {
@@ -28,13 +25,12 @@ class TeamForm extends Component {
         teamRoles: teamRolesField
       },
       handleSubmit,
-      handleRoleSelect
     } = this.props;
 
     return (
       <form onSubmit={ handleSubmit }>
         <input type="hidden" className="form-control" id="id" {...idField} />
-        <input type="hidden" className="form-control" id="teamRoles" {...teamRolesField} />
+        
         <fieldset className="form-group">
           <label>Team Name</label>
           <input
@@ -53,10 +49,9 @@ class TeamForm extends Component {
         <fieldset className="form-group">
           <label>Roles</label>
           <ButtonList
-            selected={ teamRoles }
+            {...teamRolesField} 
             list={ roles }
             matchAttr='name'
-            handleButtonListChange={ handleRoleSelect }
           />
         </fieldset>
         <button className="btn btn-primary btn-block" type="submit">Create</button>
@@ -66,17 +61,9 @@ class TeamForm extends Component {
 }
 
 function mapStateToProps(state) {
-  const { team = {}, teamRoles, roles, users, clearForm } = state.teamReducer;
+  const { team = {}, teamRoles, roles, users } = state.teamReducer;
   const { id, name, notes } = team;
-
-  let initialValues = { id, name, notes, teamRoles };
-
-  // Should write a helper function for it
-  // To avoid initial values overpower prop values
-  if(state.form.team) {
-    initialValues.name = state.form.team.name.value === undefined ? name : state.form.team.name.value
-    initialValues.notes = state.form.team.notes.value === undefined ? notes : state.form.team.notes.value
-  }
+  const initialValues = { id, name, notes, teamRoles };
 
   return {
     users,
@@ -88,6 +75,7 @@ function mapStateToProps(state) {
 
 export default reduxForm({
   form,
-  fields
+  fields,
+  destroyOnUnmount: true
 },
 mapStateToProps)(TeamForm);

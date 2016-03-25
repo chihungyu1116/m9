@@ -54,12 +54,3 @@ export function requestTeamNewAct() {
     promise: request.get(API.new)
   }
 }
-
-export const HANDLE_ROLE_SELECT_ACT = 'HANDLE_ROLE_SELECT_ACT';
-
-export function handleRoleSelectAct(teamRoles) {
-  return {
-    type: HANDLE_ROLE_SELECT_ACT,
-    teamRoles
-  }
-}

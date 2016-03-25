@@ -9,8 +9,7 @@ import {
   requestTeamNewAct,
   requestTeamShowAct,
   requestTeamCreateAct,
-  requestTeamUpdateAct,
-  handleRoleSelectAct
+  requestTeamUpdateAct
 } from '../actions/Team';
 
 class TeamEditPage extends Component {
@@ -58,11 +57,9 @@ class TeamEditPage extends Component {
   }
 
   render() {
-    const { handleRoleSelectAct } = this.props
-
     return (
       <div id='team-edit-page' className='page'>
-        <TeamForm onSubmit={ this._handleTeamSubmit } handleRoleSelect={ handleRoleSelectAct }/>
+        <TeamForm onSubmit={ this._handleTeamSubmit } />
       </div>
     );
   }
@@ -72,13 +69,4 @@ function mapStateToProps(state) {
   return {};
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch, 
-    handleRoleSelectAct: (params) => {
-      dispatch(handleRoleSelectAct(params));
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(TeamEditPage)
+export default connect(mapStateToProps)(TeamEditPage)

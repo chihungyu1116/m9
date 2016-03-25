@@ -4,51 +4,44 @@ import moment from 'moment';
 export default class ButtonList extends React.Component {
   static propTypes = {
     matchAttr: PropTypes.string.isRequired,
-    selected: PropTypes.array.isRequired, 
-    list: PropTypes.array.isRequired,
-    handleButtonListChange: PropTypes.func.isRequired // return the selected items
+    list: PropTypes.array.isRequired
   };
 
-  constructor(props) {
-    super(props);
-    this._handleButtonClick = this._handleButtonClick.bind(this);
-  }
-
   _handleButtonClick(event) {
-    const value = event.target.textContent;
-    const { list, selected, matchAttr, handleButtonListChange } = this.props
+    const { list, matchAttr, value = [], handleButtonListChange, onChange } = this.props
+
     let result = [];
     let found = false;
 
-    // if item is selected then deselect it
-    selected.forEach((selectedItem) => {
-      if(selectedItem[matchAttr] === value) {
+    // If item is selected then deselect it
+    value.forEach((selectedItem) => {
+      if(selectedItem[matchAttr] === event.target.textContent) {
         found = true;
       } else {
         result.push(selectedItem);
       }
     });
 
-    // if item is not selected then select it
+    // If item is not selected then select it
     if(!found) {
       list.forEach((item) => {
-        if(item[matchAttr] === value) {
+        if(item[matchAttr] === event.target.textContent) {
           result.push(item);  
         }
       });
     }
 
-    handleButtonListChange(result);
+    return result;
   }
 
   render() {
-    const { list, selected, matchAttr } = this.props;
+    const { list, value = [], matchAttr, onChange } = this.props;
     let result = [];
 
     list.forEach((item) => {
       let found = false;
 
-      selected.forEach((selectedItem) => {
+      value.forEach((selectedItem) => {
         if(selectedItem[matchAttr] === item[matchAttr]) {
           found = true;
         }
@@ -69,7 +62,7 @@ export default class ButtonList extends React.Component {
                 type='button'
                 className={ 'btn btn-sm ' + (item.checked ? 'btn-info' : 'btn-secondary') }
                 key={ index }
-                onClick={ this._handleButtonClick }>
+                onClick={ event => onChange(this._handleButtonClick(event)) }>
                 { item[matchAttr] }
               </button>
             )

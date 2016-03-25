@@ -56,6 +56,7 @@ function mapStateToProps(state) {
 
 export default reduxForm({
   form,
-  fields
+  fields,
+  destroyOnUnmount: true
 },
 mapStateToProps)(UserForm);
