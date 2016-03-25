@@ -35,7 +35,7 @@ class ResourcePage extends Component {
   }
 
   _handleRowClick(row) {
-    this.context.router.replace(`/resource/edit/${row.id}`);
+    this.context.router.push(`/resource/edit/${row.id}`);
   }
 
   render() {

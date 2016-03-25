@@ -35,7 +35,7 @@ class AppPage extends React.Component {
         <Breadcrumb routes={routes} params={params} />
         <Notification />
         <div className="container-fluid">
-          {this.props.children}
+          { this.props.children }
         </div>
       </div>
     );

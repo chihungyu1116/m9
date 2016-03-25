@@ -1,4 +1,5 @@
 import React, { Component , PropTypes } from 'react';
+import { Link } from 'react-router';
 
 export default class DashboardPage extends React.Component {
   static contextTypes = { // https://facebook.github.io/react/docs/context.html
@@ -14,7 +15,11 @@ export default class DashboardPage extends React.Component {
 
     return (
       <div id="dashboard-page">
-        Dashboard
+        <h3>Modulator Dashboard</h3>
+
+        <ul>
+          <li><Link to='/user-management'>User Management</Link></li>
+        </ul>
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { reduxForm } from 'redux-form';
+import { reduxForm, initialize } from 'redux-form';
 import ButtonList from '../components/ButtonList';
+import { mapFormData } from '../lib/utils';
 
 export const form = 'team';
 export const fields = ['id', 'name', 'notes', 'teamRoles'];
@@ -33,7 +34,14 @@ class TeamForm extends Component {
         <input type="hidden" className="form-control" id="teamRoles" {...teamRolesField} />
         <fieldset className="form-group">
           <label>Team Name</label>
-          <input type="text" className="form-control" id="name" placeholder="Team name" { ...nameField } autoComplete="off"/>
+          <input
+            type="text"
+            className="form-control"
+            id="name"
+            placeholder="Team name"
+            autoComplete="off"
+            { ...nameField }
+          />
         </fieldset>
         <fieldset className="form-group">
           <label>Notes</label>
@@ -45,7 +53,8 @@ class TeamForm extends Component {
             selected={ teamRoles }
             list={ roles }
             matchAttr='name'
-            handleButtonListChange={ handleRoleSelect } />
+            handleButtonListChange={ handleRoleSelect }
+          />
         </fieldset>
         <button className="btn btn-primary btn-block" type="submit">Create</button>
       </form>
@@ -57,16 +66,20 @@ function mapStateToProps(state) {
   const { team = {}, teamRoles, roles, users } = state.teamReducer;
   const { id, name, notes } = team;
 
+  let initialValues = { id, name, notes, teamRoles };
+
+  // Should write a helper function for it
+  // To avoid initial values overpower prop values
+  if(state.form.team) {
+    initialValues.name = state.form.team.name.value === undefined ? name : state.form.team.name.value
+    initialValues.notes = state.form.team.notes.value === undefined ? notes : state.form.team.notes.value
+  }
+
   return {
     users,
     roles,
     teamRoles,
-    initialValues: {
-      id,
-      name,
-      notes,
-      teamRoles
-    }
+    initialValues
   };
 }
 

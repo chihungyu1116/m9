@@ -45,24 +45,8 @@ $form-width-x2: 960px;
   }
 }
 
-#role-page {
-  & > .nav-pills {
-    margin-bottom: 20px;
-  } 
-}
-
 #role-edit-page {
   width: $form-width;
-}
-
-.list-component {
-  .list-tag {
-    margin-right: 10px;
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
 }
 
 .button-list-component {
@@ -107,5 +91,66 @@ $form-width-x2: 960px;
 
   &:first-child {
     padding-top: 0;
+  }
+}
+
+.sidenav {
+  float: left;
+  padding-right: 15px;
+
+  .nav-list {
+    list-style: none;
+    padding: 10px 0 10px 10px;
+
+    & > li {
+      margin-bottom: 5px;
+      cursor: pointer;
+      color: #818a91;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 150px;
+
+      & > a {
+        text-decoration: none;
+
+        &:hover {
+          color: #373a3c;
+        }
+
+        &.active {
+          position: relative;
+          color: #373a3c;
+          font-weight: bold;
+
+          &:before {
+            position: absolute;
+            left: -10px;
+            top: 1px;
+            width: 2px;
+            height: 100%;
+            background: #F60;
+            content: '';
+          }
+        }
+      }
+    }
+  }
+}
+
+.side-pane-container {
+  height: auto;
+  overflow: hidden;
+}
+
+.content-pane {
+  float: none;
+  width: auto;
+  overflow: hidden;
+}
+
+.page {
+  & > .nav {
+    margin-bottom: 20px;
   }
 }

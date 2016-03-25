@@ -5,6 +5,7 @@ import teamReducer from './Team';
 import resourceReducer from './Resource';
 import notificationReducer from './Notification';
 import memberReducer from './Member';
+import userManagementReducer from './UserManagement';
 import { reducer as formReducer } from 'redux-form';
 
 export default {
@@ -15,5 +16,6 @@ export default {
   teamReducer,
   resourceReducer,
   notificationReducer,
+  userManagementReducer,
   memberReducer
 }

@@ -38,9 +38,9 @@ class TeamsController < ApplicationController
   def create
     @team = Team.create create_params
 
-    team_member_params.each do |team_member|
-      @team.member << Member.find(team_member.id)
-    end
+    # team_member_params.each do |team_member|
+    #   @team.member << Member.find(team_member.id)
+    # end
 
     render json: @team
   end

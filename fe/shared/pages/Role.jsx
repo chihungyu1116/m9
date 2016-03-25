@@ -35,7 +35,7 @@ class TeamPage extends Component {
   }
 
   _handleRowClick(row) {
-    this.context.router.replace(`/role/edit/${row.id}`);
+    this.context.router.push(`/role/edit/${row.id}`);
   }
 
   render() {
@@ -43,7 +43,7 @@ class TeamPage extends Component {
     const rows = this.props.roles;
 
     return (
-      <div id='role-page'>
+      <div id='role-page' className='page'>
         <ul className="nav nav-pills">
           <li className="nav-item">
             <Link className='btn btn-primary' to='/role/new'>Create</Link>

@@ -61,18 +61,15 @@ class TeamEditPage extends Component {
     const { handleRoleSelectAct } = this.props
 
     return (
-      <div id='team-edit-page'>
-        <div className='col-sm-6 container-xs'>
-          <TeamForm onSubmit={ this._handleTeamSubmit } handleRoleSelect={ handleRoleSelectAct }/>
-        </div>
-        <div className='col-sm-6 container-xs'>
-          <UserSearchForm onSubmit={ this._handleUserSearchSubmit } />
-          <UserForm onSubmit={ this._handleUserSubmit } />
-        </div>
+      <div id='team-edit-page' className='page'>
+        <TeamForm onSubmit={ this._handleTeamSubmit } handleRoleSelect={ handleRoleSelectAct }/>
       </div>
     );
   }
 }
+
+// <UserSearchForm onSubmit={ this._handleUserSearchSubmit } />
+// <UserForm onSubmit={ this._handleUserSubmit } />
 
 function mapStateToProps(state) {
   return {};

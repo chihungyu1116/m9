@@ -6368,8 +6368,12 @@ a.bg-danger:focus, a.bg-danger:hover {
   -webkit-box-orient: vertical;
 }
 
-.list-component {
-  padding-top: 20px;
+.list-component .list-tag {
+  margin-right: 10px;
+}
+
+.list-component .list-tag:last-child {
+  margin-right: 0;
 }
 
 .notification-enter {
@@ -6483,20 +6487,8 @@ a.bg-danger:focus, a.bg-danger:hover {
   margin-bottom: 15px;
 }
 
-#role-page > .nav-pills {
-  margin-bottom: 20px;
-}
-
 #role-edit-page {
   width: 480px;
-}
-
-.list-component .list-tag {
-  margin-right: 10px;
-}
-
-.list-component .list-tag:last-child {
-  margin-right: 0;
 }
 
 .button-list-component {
@@ -6542,5 +6534,64 @@ a.bg-danger:focus, a.bg-danger:hover {
 
 .container-xs:first-child {
   padding-top: 0;
+}
+
+.sidenav {
+  float: left;
+  padding-right: 15px;
+}
+
+.sidenav .nav-list {
+  padding: 10px 0 10px 10px;
+  list-style: none;
+}
+
+.sidenav .nav-list > li {
+  width: 150px;
+  margin-bottom: 5px;
+  overflow: hidden;
+  color: #818a91;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.sidenav .nav-list > li > a {
+  text-decoration: none;
+}
+
+.sidenav .nav-list > li > a:hover {
+  color: #373a3c;
+}
+
+.sidenav .nav-list > li > a.active {
+  position: relative;
+  font-weight: bold;
+  color: #373a3c;
+}
+
+.sidenav .nav-list > li > a.active:before {
+  position: absolute;
+  top: 1px;
+  left: -10px;
+  width: 2px;
+  height: 100%;
+  content: '';
+  background: #f60;
+}
+
+.side-pane-container {
+  height: auto;
+  overflow: hidden;
+}
+
+.content-pane {
+  float: none;
+  width: auto;
+  overflow: hidden;
+}
+
+.page > .nav {
+  margin-bottom: 20px;
 }
 /*# sourceMappingURL=bootstrap.css.map */

@@ -39,9 +39,8 @@ class TeamPage extends Component {
     this.props.requestTeamIndexAct({});
   }
 
-
   _handleRowClick(row) {
-    this.context.router.replace(`/team/edit/${row.id}`);
+    this.context.router.push(`/team/edit/${row.id}`);
   }
 
   render() {
@@ -49,7 +48,7 @@ class TeamPage extends Component {
     const rows = this.props.teams;
 
     return (
-      <div id='team-page'>
+      <div id='team-page' className='page'>
         <ul className="nav nav-pills">
           <li className="nav-item">
             <Link className='btn btn-primary' to='/team/new'>Create</Link>
@@ -66,8 +65,6 @@ class TeamPage extends Component {
 
 function mapStateToProps(state) {
   const { teams = [] } = state.teamReducer;
-
-  console.log('teams',teams)
 
   return {
     teams

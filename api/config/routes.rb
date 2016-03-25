@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   match 'resources/new', to: 'resources#new', via: [:get]
   resources :resources
 
-  match 'teams/new', to: 'team#new', via: [:get]
-  match 'teams/add_member', to: 'team#add_member', via: [:post]
+  match 'teams/new', to: 'teams#new', via: [:get]
+  match 'teams/add_member', to: 'teams#add_member', via: [:post]
   resources :teams
 
   match 'members/new', to: 'members#new', via: [:get]

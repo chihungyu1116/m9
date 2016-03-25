@@ -62,7 +62,7 @@ class RoleForm extends Component {
         <input type="hidden" className="form-control" id="resources" { ...resourcesField } />
         <fieldset className="form-group">
           <label>Name</label>
-          <input type="text" className="form-control" id="name" placeholder="Controller" { ...nameField } autoComplete="off"/>
+          <input type="text" className="form-control" id="name" placeholder="Role Name" { ...nameField } autoComplete="off"/>
         </fieldset>
         <Tree tree={ resourceTree } handleTreeChange={ this._handleTreeChange }/>
         <button className="btn btn-primary btn-block" type="submit">Submit</button>

@@ -87,6 +87,7 @@ class Header extends React.Component {
               <li><Link to='/dashboard'>Dashboard</Link></li>
               <li><Link to='/team'>Team</Link></li>
               <li><Link to='/role'>Role</Link></li>
+              <li><Link to='/user-management'>User Management</Link></li>
             </ul>
           </div>
         </div>
