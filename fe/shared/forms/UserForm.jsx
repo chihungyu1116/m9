@@ -4,10 +4,6 @@ import { reduxForm } from 'redux-form';
 export const form = 'user';
 export const fields = ['teamId', 'id', 'name', 'email', 'notes', 'password', 'roles'];
 
-import {
-  requestMemberLookUpAct
-} from '../actions/Member'
-
 class UserForm extends Component {
   static propTypes = {
     fields: PropTypes.object.isRequired,
@@ -62,6 +58,4 @@ export default reduxForm({
   form,
   fields
 },
-mapStateToProps, {
-  requestMemberLookUpAct
-})(UserForm);
+mapStateToProps)(UserForm);

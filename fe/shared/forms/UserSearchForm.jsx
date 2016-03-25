@@ -4,10 +4,6 @@ import { reduxForm } from 'redux-form';
 export const form = 'user-search';
 export const fields = ['name'];
 
-import {
-  requestMemberLookUpAct
-} from '../actions/Member'
-
 class UserSearchForm extends Component {
   static propTypes = {
     fields: PropTypes.object.isRequired,

@@ -31,7 +31,7 @@ class ResourcePage extends Component {
   }
 
   componentWillMount() {
-    this.props.requestResourceIndexAct({});
+    this.props.dispatch(requestResourceIndexAct({}));
   }
 
   _handleRowClick(row) {
@@ -66,6 +66,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {
-  requestResourceIndexAct
-})(ResourcePage)
+export default connect(mapStateToProps)(ResourcePage)

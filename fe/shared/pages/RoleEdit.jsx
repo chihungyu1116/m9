@@ -20,22 +20,22 @@ class RoleEditPage extends Component {
   }
 
   componentWillMount() {
-    const { requestRoleNewAct, requestRoleShowAct, params } = this.props;
+    const { dispatch, params } = this.props;
 
     if(this.isEditPage()) {
-      requestRoleShowAct(params)
+      dispatch(requestRoleShowAct(params));
     } else {
-      requestRoleNewAct();
+      dispatch(requestRoleNewAct());
     }
   }
 
   _handleSubmit(values) {
-    const { requestRoleCreateAct, requestRoleUpdateAct } = this.props;
+    const { dispatch } = this.props;
 
     if(this.isEditPage()) {
-      requestRoleUpdateAct(values);
+      dispatch(requestRoleUpdateAct(values));
     } else {
-      requestRoleCreateAct(values);
+      dispatch(requestRoleCreateAct(values));
     }
   }
 
@@ -61,9 +61,4 @@ function mapStateToProps(state) {
   return {};
 }
 
-export default connect(mapStateToProps, {
-  requestRoleNewAct,
-  requestRoleShowAct,
-  requestRoleCreateAct,
-  requestRoleUpdateAct
-})(RoleEditPage)
+export default connect(mapStateToProps)(RoleEditPage)

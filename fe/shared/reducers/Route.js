@@ -22,11 +22,11 @@ export default function Route(state = {}, action) {
 
   if(actType === REQUEST_RESOURCE_CREATE_ACT) {
     return Object.assign({}, state, {
-      redirect: '/user-management/resources'
+      redirect: '/resources'
     });
   } else if(actType === REQUEST_RESOURCE_UPDATE_ACT) {
     return Object.assign({}, state, {
-      redirect: '/user-management/resources'
+      redirect: '/resources'
     });
   } else if(actType === AFTER_REDIRECT_ACT) {
     return Object.assign({}, state, {
@@ -34,19 +34,19 @@ export default function Route(state = {}, action) {
     });
   } else if(actType === REQUEST_ROLE_CREATE_ACT) {
     return Object.assign({}, state, {
-      redirect: '/user-management/roles'
+      redirect: '/roles'
     });
   } else if(actType === REQUEST_ROLE_UPDATE_ACT) {
     return Object.assign({}, state, {
-      redirect: '/user-management/roles'
+      redirect: '/roles'
     });
   } else if(actType === REQUEST_TEAM_CREATE_ACT) {
     return Object.assign({}, state, {
-      redirect: '/user-management/teams'
+      redirect: '/teams'
     });
   } else if(actType === REQUEST_TEAM_UPDATE_ACT) {
     return Object.assign({}, state, {
-      redirect: '/user-management/teams'
+      redirect: '/teams'
     });
   }
 

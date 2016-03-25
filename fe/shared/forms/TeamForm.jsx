@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm, initialize } from 'redux-form';
 import ButtonList from '../components/ButtonList';
-import { mapFormData } from '../lib/utils';
 
 export const form = 'team';
 export const fields = ['id', 'name', 'notes', 'teamRoles'];
@@ -11,6 +10,10 @@ class TeamForm extends Component {
     fields: PropTypes.object.isRequired,
     handleRoleSelect: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired
+  }
+
+  componentWillMount() {
+    console.log('mount again?')  
   }
 
   render() {
@@ -63,7 +66,7 @@ class TeamForm extends Component {
 }
 
 function mapStateToProps(state) {
-  const { team = {}, teamRoles, roles, users } = state.teamReducer;
+  const { team = {}, teamRoles, roles, users, clearForm } = state.teamReducer;
   const { id, name, notes } = team;
 
   let initialValues = { id, name, notes, teamRoles };

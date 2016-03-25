@@ -20,7 +20,7 @@ export default function Session(state = {}, action) {
       roles: [],
       authToken: null
     });
-  } else if(actType === REQUEST_USER_SHOW_ACT) {
+  } else if(actType === REQUEST_USER_SHOW_ACT + '_SUCCESS') {
     const data = action.res.data;
 
     return Object.assign({}, state, {

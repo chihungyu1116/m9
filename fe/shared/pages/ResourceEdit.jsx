@@ -18,22 +18,22 @@ class ResourceEditPage extends Component {
   }
 
   componentWillMount() {
-    const { requestResourceNewAct, requestResourceShowAct, params } = this.props;
+    const { dispatch, params } = this.props;
 
     if(this._isEditPage()) {
-      requestResourceShowAct(params)
+      dispatch(requestResourceShowAct(params));
     } else {
-      requestResourceNewAct();
+      dispatch(requestResourceNewAct());
     }
   }
 
   _handleSubmit(values) {
-    const { requestResourceCreateAct, requestResourceUpdateAct } = this.props;
+    const { dispatch } = this.props;
 
     if(this._isEditPage()) {
-      requestResourceUpdateAct(values);
+      dispatch(requestResourceUpdateAct(values));
     } else {
-      requestResourceCreateAct(values);
+      dispatch(requestResourceCreateAct(values));
     }
   }
 
@@ -55,9 +55,4 @@ function mapStateToProps(state) {
   return {};
 }
 
-export default connect(mapStateToProps, {
-  requestResourceNewAct,
-  requestResourceShowAct,
-  requestResourceCreateAct,
-  requestResourceUpdateAct
-})(ResourceEditPage)
+export default connect(mapStateToProps)(ResourceEditPage)

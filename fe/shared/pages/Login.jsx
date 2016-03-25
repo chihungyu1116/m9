@@ -20,7 +20,7 @@ class LoginPage extends Component {
 
   _handleSubmit(a,b,c) {
     console.log('submit: ',a,b,c)
-    this.props.requestLoginAct()
+    this.props.dispatch(requestLoginAct())
   }
 
   render() {
@@ -39,6 +39,4 @@ function mapStateToProps(state) {
   return {};
 }
 
-export default connect(mapStateToProps, {
-  requestLoginAct
-})(LoginPage)
+export default connect(mapStateToProps)(LoginPage)

@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import List from '../components/List';
 import { requestTeamIndexAct } from '../actions/Team';
+import { reset } from 'redux-form';
 
 const FIELDS = [{
   name: 'id', label: 'Id'
@@ -36,7 +37,16 @@ class TeamPage extends Component {
   }
 
   componentWillMount() {
-    this.props.requestTeamIndexAct({});
+    this.props.dispatch(requestTeamIndexAct({}));
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    const { clearForm } = this.props;
+
+    if(clearForm) {
+
+    }
+    console.log('this props', this.props, clearForm, this );
   }
 
   _handleRowClick(row) {
@@ -64,13 +74,12 @@ class TeamPage extends Component {
 }
 
 function mapStateToProps(state) {
-  const { teams = [] } = state.teamReducer;
+  const { teams = [], clearForm } = state.teamReducer;
 
   return {
-    teams
+    teams,
+    clearForm
   }
 }
 
-export default connect(mapStateToProps, {
-  requestTeamIndexAct
-})(TeamPage)
+export default connect(mapStateToProps)(TeamPage)

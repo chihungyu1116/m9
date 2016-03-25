@@ -31,7 +31,7 @@ class TeamPage extends Component {
   }
 
   componentWillMount() {
-    this.props.requestRoleIndexAct({});
+    this.props.dispatch(requestRoleIndexAct({}));
   }
 
   _handleRowClick(row) {
@@ -66,6 +66,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {
-  requestRoleIndexAct
-})(TeamPage)
+export default connect(mapStateToProps)(TeamPage)

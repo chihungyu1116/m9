@@ -20,7 +20,7 @@ class RoleForm extends Component {
   }
 
   _handleTreeChange(tree) {
-    const { updateRoleResourcesAct } = this.props;
+    const { dispatch } = this.props;
 
     let resourceInput = [];
     getResources(tree);
@@ -42,7 +42,7 @@ class RoleForm extends Component {
       });
     }
 
-    updateRoleResourcesAct(resourceInput);
+    dispatch(updateRoleResourcesAct(resourceInput));
   }
 
   render() {
@@ -164,6 +164,4 @@ export default reduxForm({
   form,
   fields
 },
-mapStateToProps, {
-  updateRoleResourcesAct
-})(RoleForm);
+mapStateToProps)(RoleForm);

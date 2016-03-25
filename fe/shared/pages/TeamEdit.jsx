@@ -25,22 +25,22 @@ class TeamEditPage extends Component {
   }
 
   componentWillMount() {
-    const { requestTeamNewAct, requestTeamShowAct, params } = this.props;
+    const { dispatch, params } = this.props;
 
     if(this._isEditPage()) {
-      requestTeamShowAct(params)
+      dispatch(requestTeamShowAct(params));
     } else {
-      requestTeamNewAct();
+      dispatch(requestTeamNewAct());
     }
   }
 
   _handleTeamSubmit(values) {
-    const { requestTeamCreateAct, requestTeamUpdateAct } = this.props;
+    const { dispatch } = this.props;
 
     if(this._isEditPage()) {
-      requestTeamUpdateAct(values);
+      dispatch(requestTeamUpdateAct(values));
     } else {
-      requestTeamCreateAct(values);
+      dispatch(requestTeamCreateAct(values));
     }
   }
 
@@ -68,17 +68,17 @@ class TeamEditPage extends Component {
   }
 }
 
-// <UserSearchForm onSubmit={ this._handleUserSearchSubmit } />
-// <UserForm onSubmit={ this._handleUserSubmit } />
-
 function mapStateToProps(state) {
   return {};
 }
 
-export default connect(mapStateToProps, {
-  requestTeamNewAct,
-  requestTeamShowAct,
-  requestTeamCreateAct,
-  requestTeamUpdateAct,
-  handleRoleSelectAct
-})(TeamEditPage)
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch, 
+    handleRoleSelectAct: (params) => {
+      dispatch(handleRoleSelectAct(params));
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TeamEditPage)

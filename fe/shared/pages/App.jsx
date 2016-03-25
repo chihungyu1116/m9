@@ -21,7 +21,7 @@ class AppPage extends React.Component {
       this.context.router.replace('/login');
     } else if(nextProps.redirect != null) {
       this.context.router.replace(nextProps.redirect);
-      this.props.afterRedirectAct();
+      this.props.dispatch(afterRedirectAct());
     }
 
   }
@@ -52,6 +52,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {
-  afterRedirectAct
-})(AppPage)
+export default connect(mapStateToProps)(AppPage)
