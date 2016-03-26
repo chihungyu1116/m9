@@ -54,3 +54,12 @@ export function requestTeamNewAct() {
     promise: request.get(API.new)
   }
 }
+
+export const SELECT_NAV_LIST_ACT = 'SELECT_NAV_LIST_ACT';
+
+export function selectNavListAct(index) {
+  return {
+    type: SELECT_NAV_LIST_ACT,
+    index
+  }
+}

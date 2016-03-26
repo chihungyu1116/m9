@@ -2,7 +2,8 @@ import {
   REQUEST_TEAM_NEW_ACT,
   REQUEST_TEAM_SHOW_ACT,
   REQUEST_TEAM_INDEX_ACT,
-  REQUEST_TEAM_UPDATE_ACT
+  REQUEST_TEAM_UPDATE_ACT,
+  SELECT_NAV_LIST_ACT
 } from '../actions/Team';
 
 export default function Team(state = {}, action) {
@@ -17,7 +18,6 @@ export default function Team(state = {}, action) {
       team,
       team_roles,
       team_members,
-      users,
       roles
     } = action.res.data;
     
@@ -25,15 +25,18 @@ export default function Team(state = {}, action) {
       team,
       teamRoles: team_roles ,
       teamMembers: team_members,
-      roles,
-      users
+      roles
+    });
+  } else if(actType === REQUEST_TEAM_NEW_ACT) {
+    return Object.assign({}, state, {
+      team: {},
+      teamMembers: []
     });
   } else if(actType === REQUEST_TEAM_NEW_ACT + '_SUCCESS') {
     const {
       team,
       team_roles,
       team_members,
-      users,
       roles
     } = action.res.data;
 
@@ -41,8 +44,11 @@ export default function Team(state = {}, action) {
       team,
       teamRoles: team_roles ,
       teamMembers: team_members,
-      roles,
-      users
+      roles
+    });
+  } else if(actType === SELECT_NAV_LIST_ACT) {
+    return Object.assign({}, state, {
+      navListActiveIndex: action.index  
     });
   }
 

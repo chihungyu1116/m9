@@ -14,13 +14,13 @@ const defaultState = {
 export default function Role(state = defaultState, action) {
   const actType = action.type;
 
-  if(actType === UPDATE_ROLE_RESOURCES_ACT) {
+  if(actType === UPDATE_ROLE_RESOURCES_ACT + '_SUCCESS') {
     const { roleResources } = action;
     return Object.assign({}, state, { roleResources });
-  } else if(actType === REQUEST_ROLE_INDEX_ACT) {
+  } else if(actType === REQUEST_ROLE_INDEX_ACT + '_SUCCESS') {
     const roles = action.res.data;
     return Object.assign({}, state, { roles });     
-  } else if(actType === REQUEST_ROLE_SHOW_ACT) {
+  } else if(actType === REQUEST_ROLE_SHOW_ACT + '_SUCCESS') {
     const data = action.res.data;
     return Object.assign({}, state, {
       role: data.role,

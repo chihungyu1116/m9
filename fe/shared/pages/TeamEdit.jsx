@@ -19,8 +19,6 @@ class TeamEditPage extends Component {
   constructor(props) {
     super(props);
     this._handleTeamSubmit = this._handleTeamSubmit.bind(this);
-    this._handleUserSubmit = this._handleUserSubmit.bind(this);
-    this._handleUserSearchSubmit = this._handleUserSearchSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -41,14 +39,6 @@ class TeamEditPage extends Component {
     } else {
       dispatch(requestTeamCreateAct(values));
     }
-  }
-
-  _handleUserSubmit(values) {
-    console.log('values: ', values);
-  }
-
-  _handleUserSearchSubmit(values) {
-    console.log('user search submit', values);
   }
 
   _isEditPage() {

@@ -2,6 +2,7 @@ import React, { Component , PropTypes } from 'react';
 import { connect } from 'react-redux';
 import List from '../components/List';
 import NavList from '../components/NavList';
+import { selectNavListAct } from '../actions/Team';
 
 const NAV_LIST = [{
   name: 'Teams',
@@ -29,23 +30,45 @@ class UserManagementPage extends Component {
 
   constructor(props) {
     super(props);
+    this._handleNavListClick = this._handleNavListClick.bind(this);
+  }
 
-    this.state = {
-      activeIndex: 0
-    }
+  componentWillMount() {
+    this._markNavListActiveIndex();
+  }
+
+  componentDidUpdate() {
+    this._markNavListActiveIndex();
+  }
+
+  _markNavListActiveIndex() {
+    const { dispatch, location } = this.props;
+    let found = false;
 
     NAV_LIST.forEach((item, index) => {
-      if(item.navTo === this.props.location.pathname) {
-        this.state.activeIndex = index;
+      if(item.navTo === location.pathname) {
+        dispatch(selectNavListAct(index));
+        found = true;
       }
     });
+
+    if(!found) {
+      dispatch(selectNavListAct(0));
+    }
+  }
+
+  _handleNavListClick(index) {
+    this.props.dispatch(selectNavListAct(index));
   }
 
   render() {
     return (
       <div className='user-management-page side-pane-container'>
         <div className='sidenav'>
-          <NavList list={ NAV_LIST } activeIndex={ this.state.activeIndex }/>
+          <NavList
+            list={ NAV_LIST }
+            activeIndex={ this.props.navListActiveIndex }
+            handleClick={ this._handleNavListClick } />
         </div>
         <div className='content-pane'>
           { this.props.children }
@@ -56,7 +79,11 @@ class UserManagementPage extends Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  const { navListActiveIndex } = state.teamReducer;
+
+  return {
+    navListActiveIndex
+  };
 }
 
 export default connect(mapStateToProps)(UserManagementPage)

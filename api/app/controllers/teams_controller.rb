@@ -9,38 +9,31 @@ class TeamsController < ApplicationController
 
   def new
     @team = Team.new
-    @users = Member.all
     @roles = Role.all
 
     render json: {
       team: @team,
       team_roles: [],
       team_members: [],
-      users: @users,
       roles: @roles
     }
   end
 
   def show
     @team = Team.find params[:id]
-    @users = Member.all
     @roles = Role.all
 
     render json: {
       team: @team,
       team_roles: @team.role,
       team_members: @team.member,
-      users: @users,
       roles: @roles
     }
   end
 
   def create
     @team = Team.create create_params
-
-    # team_member_params.each do |team_member|
-    #   @team.member << Member.find(team_member.id)
-    # end
+    @team.role = Role.where(['id in (?)', params[:teamRoles].map{|role| role[:id]}])
 
     render json: @team
   end

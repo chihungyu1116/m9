@@ -4,36 +4,22 @@ import { Link } from 'react-router';
 export default class NavList extends React.Component {
   static propTypes = {
     list: PropTypes.array,
-    activeIndex: PropTypes.number
+    activeIndex: PropTypes.number,
+    handleClick: PropTypes.func
   };
 
-  constructor(props) {
-    super(props);
-    const activeIndex = props.activeIndex || 0;
-
-    this.state = {
-      activeIndex
-    };
-  }
-
-  _handleClick(index) {
-    this.setState({
-      activeIndex: index
-    });
-  }
-
   render() {
-    const { list } = this.props;
+    const { list, activeIndex, handleClick } = this.props;
 
     return (
       <ul className='nav-list'>
         {
           list.map((item, index) => {
-            const className = index == this.state.activeIndex ? 'active' : '';
+            const className = index == activeIndex ? 'active' : '';
 
             return (
               <li key={ index }>
-                <Link className={ className } onClick={ this._handleClick.bind(this, index) } to={ item.navTo }>{ item.name }</Link>
+                <Link className={ className } onClick={ event => handleClick(index) } to={ item.navTo }>{ item.name }</Link>
               </li>
             )
           })
